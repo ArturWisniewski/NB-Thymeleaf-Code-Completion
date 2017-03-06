@@ -1,7 +1,7 @@
 # NB-Thymeleaf-Code-Completion
-Code completion for Thymeleaf3 on Netbeans
+Code completion for Thymeleaf on Netbeans 8.2
 
-Developing on Netbeans 8.2
+![Alt text](/thymeleafcc.png?raw=true "Example")
 
 This is only draft, not tested quickfix.
 Do not use on production.
