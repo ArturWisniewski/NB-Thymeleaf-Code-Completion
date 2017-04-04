@@ -24,6 +24,7 @@ public class CompletionUtils {
             throws BadLocationException {
         Element lineElement = doc.getParagraphElement(offset);//elemetn import
         int start = lineElement.getStartOffset();
+        int failsafe = start;
         while (start + 1 < lineElement.getEndOffset()) {
             try {
                 if (doc.getText(start, 1).charAt(0) != ' ') {
@@ -37,7 +38,7 @@ public class CompletionUtils {
             }
             start++;
         }
-        return start;
+        return start>offset?failsafe:start;
     }
 
     /**
@@ -71,6 +72,24 @@ public class CompletionUtils {
             }
         }
         return -1;
+    }
+    /**
+     * Checks if caret is inside tag
+     * 
+     * @param doc edited text
+     * @param carretOffset current caret location offset
+     * @return true if inside tag
+     * @throws BadLocationException 
+     */
+    static boolean isCarretInsideHTMLTag(StyledDocument doc, int carretOffset) throws BadLocationException{
+        while(carretOffset>0){
+        //    System.out.println(carretOffset + ", ");
+            String chars = doc.getText(carretOffset-1, 1);
+            if(chars.equals(">")) break;
+            if(chars.equals("<")) return true;
+            carretOffset--;
+        }
+        return false;
     }
 
 }

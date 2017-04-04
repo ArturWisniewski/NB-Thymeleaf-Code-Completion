@@ -24,9 +24,10 @@ import org.openide.util.Exceptions;
 public class ThymeleafCompletionProvider implements CompletionProvider {
 
     /**
-     * TODO: javadoc
+     * Creates new Completion task but only if query type is
+     * COMPLETION_QUERY_TYPE
      *
-     * @param queryType TODO
+     * @param queryType type of the query
      * @param jTextComponent TODO
      * @return AsyncCompletionTask or null
      */
@@ -51,7 +52,7 @@ public class ThymeleafCompletionProvider implements CompletionProvider {
     }
 
     /**
-     * TODO: javadoc
+     * Logic behind adding completion items (attributes) to hint list
      *
      * @return
      */
@@ -63,7 +64,17 @@ public class ThymeleafCompletionProvider implements CompletionProvider {
                 int startOffset = caretOffset - 1;
                 try {
                     final StyledDocument styledDocument = (StyledDocument) document;
+                    
+                    //TODO: rewrite this in terms of tags not lines
+                    
+                    //completion only if caret in tag
+                    if (!CompletionUtils.isCarretInsideHTMLTag(styledDocument, caretOffset)) {
+                        completionResultSet.finish();
+                        return;
+                    }
                     final int lineStartOffset = CompletionUtils.getRowFirstNonWhite(styledDocument, caretOffset);
+
+                    //  System.out.println( "DEBUG: co" + caretOffset + " lo" + lineStartOffset);
                     final char[] line = styledDocument.getText(lineStartOffset, caretOffset - lineStartOffset).toCharArray();
                     final int whiteOffset = CompletionUtils.indexOfWhite(line);
                     filter = new String(line, whiteOffset + 1, line.length - whiteOffset - 1);
