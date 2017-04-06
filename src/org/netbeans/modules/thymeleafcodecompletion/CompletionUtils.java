@@ -15,14 +15,15 @@ public class CompletionUtils {
     /**
      * TODO: javadoc
      *
-     * @param doc
-     * @param offset
+     * @param doc edited document
+     * @param offset current caret position
      * @return
      * @throws BadLocationException
      */
     static int getRowFirstNonWhite(StyledDocument doc, int offset)
             throws BadLocationException {
-        Element lineElement = doc.getParagraphElement(offset);//elemetn import
+        Element lineElement = doc.getParagraphElement(offset);//line start/stop offsets
+
         int start = lineElement.getStartOffset();
         int failsafe = start;
         while (start + 1 < lineElement.getEndOffset()) {
@@ -38,7 +39,7 @@ public class CompletionUtils {
             }
             start++;
         }
-        return start>offset?failsafe:start;
+        return start > offset ? failsafe : start;
     }
 
     /**
@@ -60,7 +61,7 @@ public class CompletionUtils {
 
     /**
      * Returns index of end of attribute
-     * 
+     *
      * @param line array of chars from begin of attribute to end of line
      * @return index of end of attribute or -1 if something went wrong
      */
@@ -73,20 +74,29 @@ public class CompletionUtils {
         }
         return -1;
     }
+
     /**
      * Checks if caret is inside tag
-     * 
+     *
      * @param doc edited text
      * @param carretOffset current caret location offset
      * @return true if inside tag
-     * @throws BadLocationException 
+     * @throws BadLocationException
      */
-    static boolean isCarretInsideHTMLTag(StyledDocument doc, int carretOffset) throws BadLocationException{
-        while(carretOffset>0){
-        //    System.out.println(carretOffset + ", ");
-            String chars = doc.getText(carretOffset-1, 1);
-            if(chars.equals(">")) break;
-            if(chars.equals("<")) return true;
+    static boolean isCarretInsideHTMLTag(StyledDocument doc, int carretOffset) throws BadLocationException {
+        int lastWhiteSpace = carretOffset;
+        while (carretOffset > 0) {
+            String chars = doc.getText(carretOffset - 1, 1);
+            if (chars.equals(">")) {
+                break;
+            } else if (chars.equals(" ")) {
+                lastWhiteSpace = carretOffset;
+            } else if (chars.equals("<")) {
+                //DEBUG INFO - i know where tag is and can read it
+                System.out.println(carretOffset + " <----> " + lastWhiteSpace + " <----> " + (lastWhiteSpace - carretOffset));
+                System.out.println(doc.getText(carretOffset, lastWhiteSpace - carretOffset));
+                return true;
+            }
             carretOffset--;
         }
         return false;
