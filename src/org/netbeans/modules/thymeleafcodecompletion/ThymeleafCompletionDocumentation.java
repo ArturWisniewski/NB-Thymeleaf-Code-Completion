@@ -17,19 +17,20 @@ public class ThymeleafCompletionDocumentation implements CompletionDocumentation
 
     /**
      *
-     * @param item TODO
+     * @param item item in code completion window list
      */
     public ThymeleafCompletionDocumentation(ThymeleafCompletionItem item) {
         this.item = item;
     }
 
     /**
-     *
-     * @return String
+     * Get documentation from ThymeleafData 
+     * @return String documentation text or "No documentation available." message
      */
     @Override
     public String getText() {
-        return ThymeleaData.getDoc(item.getText());
+        String documentation = ThymeleafData.getDoc(item.getText());
+        return documentation != null ? documentation : "No documentation available." ;
     }
 
     /**

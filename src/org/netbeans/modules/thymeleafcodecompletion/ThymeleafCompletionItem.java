@@ -73,12 +73,10 @@ public class ThymeleafCompletionItem implements CompletionItem {
 
             int endOffset = doc.getParagraphElement(dotOffset).getEndOffset();
             int indexOfWhite = CompletionUtils.indexOfAttributeEnd(doc.getText(dotOffset, endOffset - dotOffset).toCharArray());
-            //System.out.println(String.format("caret: %d \ndot: %d \nend: %d\nwhite: %d\n", caretOffset, dotOffset, endOffset, indexOfWhite));;
-            
             if (caretOffset != dotOffset) {
                 doc.remove(dotOffset, indexOfWhite);
             }
-            if (text.startsWith("th:")) {
+            if (text.startsWith("th:")||text.startsWith("layout:")) {
                 String attribute = text + "=\"\"";
                 if(caretOffset == dotOffset){
                     attribute+=" ";
@@ -91,7 +89,6 @@ public class ThymeleafCompletionItem implements CompletionItem {
                     caret.setDot(caret.getDot() - 1);
                 }
             }
-
             Completion.get().hideAll();
         } catch (BadLocationException ex) {
             Exceptions.printStackTrace(ex);

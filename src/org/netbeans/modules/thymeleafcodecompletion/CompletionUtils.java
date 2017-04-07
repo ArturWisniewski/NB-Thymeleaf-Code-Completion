@@ -76,14 +76,14 @@ public class CompletionUtils {
     }
 
     /**
-     * Checks if caret is inside tag
+     * Checks if caret is inside tag and returns tags name
      *
      * @param doc edited text
      * @param carretOffset current caret location offset
-     * @return true if inside tag
+     * @return String tag name or empty if not inside tag
      * @throws BadLocationException
      */
-    static boolean isCarretInsideHTMLTag(StyledDocument doc, int carretOffset) throws BadLocationException {
+    static String getCurrentTagName(StyledDocument doc, int carretOffset) throws BadLocationException {
         int lastWhiteSpace = carretOffset;
         while (carretOffset > 0) {
             String chars = doc.getText(carretOffset - 1, 1);
@@ -93,13 +93,13 @@ public class CompletionUtils {
                 lastWhiteSpace = carretOffset;
             } else if (chars.equals("<")) {
                 //DEBUG INFO - i know where tag is and can read it
-                System.out.println(carretOffset + " <----> " + lastWhiteSpace + " <----> " + (lastWhiteSpace - carretOffset));
-                System.out.println(doc.getText(carretOffset, lastWhiteSpace - carretOffset));
-                return true;
+                //System.out.println(carretOffset + " <----> " + lastWhiteSpace + " <----> " + (lastWhiteSpace - carretOffset));
+                //System.out.println(doc.getText(carretOffset, lastWhiteSpace - carretOffset));
+                return doc.getText(carretOffset, lastWhiteSpace - carretOffset);
             }
             carretOffset--;
         }
-        return false;
+        return "";
     }
 
 }

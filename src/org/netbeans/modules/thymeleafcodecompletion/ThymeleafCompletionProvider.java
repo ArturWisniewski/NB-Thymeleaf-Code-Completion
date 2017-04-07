@@ -64,17 +64,13 @@ public class ThymeleafCompletionProvider implements CompletionProvider {
                 int startOffset = caretOffset - 1;
                 try {
                     final StyledDocument styledDocument = (StyledDocument) document;
-                    
-                    //TODO: rewrite this in terms of tags not lines
-                    
+                    final String tag = CompletionUtils.getCurrentTagName(styledDocument, caretOffset);
                     //completion only if caret in tag
-                    if (!CompletionUtils.isCarretInsideHTMLTag(styledDocument, caretOffset)) {
+                    if (tag.isEmpty()) {
                         completionResultSet.finish();
                         return;
                     }
                     final int lineStartOffset = CompletionUtils.getRowFirstNonWhite(styledDocument, caretOffset);
-
-                    //  System.out.println( "DEBUG: co" + caretOffset + " lo" + lineStartOffset);
                     final char[] line = styledDocument.getText(lineStartOffset, caretOffset - lineStartOffset).toCharArray();
                     final int whiteOffset = CompletionUtils.indexOfWhite(line);
                     filter = new String(line, whiteOffset + 1, line.length - whiteOffset - 1);
@@ -86,11 +82,13 @@ public class ThymeleafCompletionProvider implements CompletionProvider {
                 } catch (BadLocationException ex) {
                     Exceptions.printStackTrace(ex);
                 }
+
                 if (filter != null) {
-                    String[] attributes = ThymeleaData.getThymeleafAttributes();
+                    //TODO: allowed attributes inside tag
+                    String[] attributes = ThymeleafData.getThymeleafAttributes();
                     for (int i = 0; i < attributes.length; i++) {
                         final String attribute = attributes[i];
-                        if (!attribute.equals("") && (attribute.startsWith(filter) || attribute.startsWith("th:" + filter))) {
+                        if (!attribute.equals("") && (attribute.startsWith(filter) || attribute.startsWith("th:" + filter) || attribute.startsWith("layout:" + filter))) {
                             completionResultSet.addItem(new ThymeleafCompletionItem(attribute, startOffset, caretOffset));
                         }
                     }
