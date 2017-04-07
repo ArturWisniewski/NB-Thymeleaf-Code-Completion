@@ -12,19 +12,17 @@ public class ThymeleafData {
 
     /**
      * Array of Thymeleaf attributes.
+     *
      */
-    private static String[] thymeleafAttributes = {
-       
+    private static final String[] THYMELEAF_ATTRIBUTES = {
         "xmlns:th=\"http://www.thymeleaf.org\"",
         "xmlns=\"http://www.w3.org/1999/xhtml\"",
         "xmlns:sec=\"http://www.thymeleaf.org/thymeleaf-extras-springsecurity3\"",
         "xmlns:sec=\"http://www.thymeleaf.org/thymeleaf-extras-springsecurity4\"",
-        
         "layout:decorator",
         "layout:fragment",
         "layout:include",
         "layout:replace",
-
         "th:abbr",
         "th:accept",
         "th:accept-charset",
@@ -44,12 +42,10 @@ public class ThymeleafData {
         "th:autofocus",
         "th:autoplay",
         "th:axis",
-        
         "th:background",
         "th:bgcolor",
         "th:border",
         "th:block", //none in eclipse plugin
-        
         "th:case",
         "th:cellpadding",
         "th:cellspacing",
@@ -69,7 +65,6 @@ public class ThymeleafData {
         "th:contenteditable",
         "th:contextmenu",
         "th:controls",
-        
         "th:data",
         "th:datetime",
         "th:declare",
@@ -79,10 +74,8 @@ public class ThymeleafData {
         "th:disabled",
         "th:draggable",
         "th:dropzone",
-        
         "th:each",
         "th:enctype",
-        
         "th:for",
         "th:form",
         "th:formaction",
@@ -93,7 +86,6 @@ public class ThymeleafData {
         "th:fragment",
         "th:frame",
         "th:frameborder",
-        
         "th:headers",
         "th:height",
         "th:hidden",
@@ -102,7 +94,6 @@ public class ThymeleafData {
         "th:hreflang",
         "th:hspace",
         "th:http-equiv",
-        
         "th:icon",
         "th:id",
         "th:if",
@@ -110,10 +101,8 @@ public class ThymeleafData {
         "th:inline",
         "th:ismap",
         "th:insert", //thymeleaf ver 3
-        
         "th:keytype",
         "th:kind",
-        
         "th:label",
         "th:lang",
         "th:lang-xmllang",
@@ -121,7 +110,6 @@ public class ThymeleafData {
         "th:longdesc",
         "th:loop",
         "th:low",
-        
         "th:manifest",
         "th:marginheight",
         "th:marginwidth",
@@ -131,13 +119,10 @@ public class ThymeleafData {
         "th:method",
         "th:min",
         "th:multiple",
-        
         "th:name",
         "th:novalidate",
         "th:nowarp",
-        
         "th:object",
-        
         "th:onabort",
         "th:onafterprint",
         "th:onbeforeprint",
@@ -206,16 +191,13 @@ public class ThymeleafData {
         "th:onunload",
         "th:onvolumechange",
         "th:onwaiting",
-        
         "th:open",
         "th:optimum",
-        
         "th:pattern",
         "th:placeholder",
         "th:poster",
         "th:preload",
         "th:pubdate",
-        
         "th:radiogroup",
         "th:readonly",
         "th:rel",
@@ -227,7 +209,6 @@ public class ThymeleafData {
         "th:rows",
         "th:rowspan",
         "th:rules",
-        
         "th:sandbox",
         "th:scheme",
         "th:scope",
@@ -249,70 +230,442 @@ public class ThymeleafData {
         "th:substituteby",
         "th:summary",
         "th:switch",
-        
         "th:tabindex",
         "th:target",
         "th:text",
         "th:title",
         "th:type",
-        
         "th:unless",
         "th:usemap",
         "th:utext",
-        
         "th:value",
         "th:valuetype",
         "th:vspace",
-        
         "th:width",
         "th:with",
         "th:wrap",
-        
         "th:xmlbase",
         "th:xmllang",
         "th:xmlspace"
-
+    };
+/**
+ * Array of thymeleaf methods
+ */
+    private static final String[] THYMELEAF_METHODS = {
+        "#aggregates.avg()",
+        "#aggregates.sum()",
+        "#arrays.contains()",
+        "#arrays.containsAll()",
+        "#arrays.empty",
+        "#arrays.length()",
+        "#arrays.toArray()",
+        "#arrays.toBooleanArray()",
+        "#arrays.toDoubleArray()",
+        "#arrays.toFloatArray()",
+        "#arrays.toIntegerArray()",
+        "#arrays.toLongArray()",
+        "#arrays.toStringArray()",
+        "#bools.and",
+        "#bools.arrayAnd()",
+        "#bools.arrayIsFalse()",
+        "#bools.arrayIsTrue()",
+        "#bools.arrayOr()",
+        "#bools.false",
+        "#bools.isFalse",
+        "#bools.isTrue",
+        "#bools.listAnd()",
+        "#bools.listIsFalse()",
+        "#bools.listIsTrue()",
+        "#bools.listOr()",
+        "#bools.or",
+        "#bools.true",
+        "#calendars.arrayDay()",
+        "#calendars.arrayDayOfWeek()",
+        "#calendars.arrayDayOfWeekName()",
+        "#calendars.arrayDayOfWeekNameShort()",
+        "#calendars.arrayFormat()",
+        "#calendars.arrayFormatISO()",
+        "#calendars.arrayHour()",
+        "#calendars.arrayMillisecond()",
+        "#calendars.arrayMinute()",
+        "#calendars.arrayMonth()",
+        "#calendars.arrayMonthName()",
+        "#calendars.arrayMonthNameShort()",
+        "#calendars.arraySecond()",
+        "#calendars.arrayYear()",
+        "#calendars.create()",
+        "#calendars.createForTimeZone()",
+        "#calendars.createNow()",
+        "#calendars.createNowForTimeZone()",
+        "#calendars.createToday()",
+        "#calendars.createTodayForTimeZone()",
+        "#calendars.day()",
+        "#calendars.dayOfWeek()",
+        "#calendars.dayOfWeekName()",
+        "#calendars.dayOfWeekNameShort()",
+        "#calendars.format()",
+        "#calendars.formatISO()",
+        "#calendars.hour()",
+        "#calendars.listDay()",
+        "#calendars.listDayOfWeek()",
+        "#calendars.listDayOfWeekName()",
+        "#calendars.listDayOfWeekNameShort()",
+        "#calendars.listFormat()",
+        "#calendars.listFormatISO()",
+        "#calendars.listHour()",
+        "#calendars.listMillisecond()",
+        "#calendars.listMinute()",
+        "#calendars.listMonth()",
+        "#calendars.listMonthName()",
+        "#calendars.listMonthNameShort()",
+        "#calendars.listSecond()",
+        "#calendars.listYear()",
+        "#calendars.millisecond()",
+        "#calendars.minute()",
+        "#calendars.month()",
+        "#calendars.monthName()",
+        "#calendars.monthNameShort()",
+        "#calendars.second()",
+        "#calendars.year()",
+        "#ctx.addContextExecutionInfo()",
+        "#ctx.locale",
+        "#ctx.variables",
+        "#dates.arrayDay()",
+        "#dates.arrayDayOfWeek()",
+        "#dates.arrayDayOfWeekName()",
+        "#dates.arrayDayOfWeekNameShort()",
+        "#dates.arrayFormat()",
+        "#dates.arrayFormatISO()",
+        "#dates.arrayHour()",
+        "#dates.arrayMillisecond()",
+        "#dates.arrayMinute()",
+        "#dates.arrayMonth()",
+        "#dates.arrayMonthName()",
+        "#dates.arrayMonthNameShort()",
+        "#dates.arraySecond()",
+        "#dates.arrayYear()",
+        "#dates.create()",
+        "#dates.createNow()",
+        "#dates.createNowForTimeZone()",
+        "#dates.createToday()",
+        "#dates.createTodayForTimeZone()",
+        "#dates.day()",
+        "#dates.dayOfWeek()",
+        "#dates.dayOfWeekName()",
+        "#dates.dayOfWeekNameShort()",
+        "#dates.format()",
+        "#dates.formatISO()",
+        "#dates.hour()",
+        "#dates.listDay()",
+        "#dates.listDayOfWeek()",
+        "#dates.listDayOfWeekName()",
+        "#dates.listDayOfWeekNameShort()",
+        "#dates.listFormat()",
+        "#dates.listFormatISO()",
+        "#dates.listHour()",
+        "#dates.listMillisecond()",
+        "#dates.listMinute()",
+        "#dates.listMonth()",
+        "#dates.listMonthName()",
+        "#dates.listMonthNameShort()",
+        "#dates.listSecond()",
+        "#dates.listYear()",
+        "#dates.millisecond()",
+        "#dates.minute()",
+        "#dates.month()",
+        "#dates.monthName()",
+        "#dates.monthNameShort()",
+        "#dates.second()",
+        "#dates.year()",
+        "#httpServletRequest.authType",
+        "#httpServletRequest.authenticate()",
+        "#httpServletRequest.changeSessionId()",
+        "#httpServletRequest.contextPath",
+        "#httpServletRequest.cookies",
+        "#httpServletRequest.dateHeader",
+        "#httpServletRequest.header",
+        "#httpServletRequest.headerNames",
+        "#httpServletRequest.headers",
+        "#httpServletRequest.intHeader",
+        "#httpServletRequest.login()",
+        "#httpServletRequest.logout()",
+        "#httpServletRequest.method",
+        "#httpServletRequest.part",
+        "#httpServletRequest.parts",
+        "#httpServletRequest.pathInfo",
+        "#httpServletRequest.pathTranslated",
+        "#httpServletRequest.queryString",
+        "#httpServletRequest.remoteUser",
+        "#httpServletRequest.requestURI",
+        "#httpServletRequest.requestURL",
+        "#httpServletRequest.requestedSessionId",
+        "#httpServletRequest.requestedSessionIdFromCookie",
+        "#httpServletRequest.requestedSessionIdFromURL",
+        "#httpServletRequest.requestedSessionIdFromUrl",
+        "#httpServletRequest.requestedSessionIdValid",
+        "#httpServletRequest.servletPath",
+        "#httpServletRequest.session",
+        "#httpServletRequest.upgrade()",
+        "#httpServletRequest.userInRole",
+        "#httpServletRequest.userPrincipal",
+        "#httpSession.attribute",
+        "#httpSession.attributeNames",
+        "#httpSession.creationTime",
+        "#httpSession.id",
+        "#httpSession.invalidate()",
+        "#httpSession.lastAccessedTime",
+        "#httpSession.maxInactiveInterval",
+        "#httpSession.new",
+        "#httpSession.putValue()",
+        "#httpSession.removeAttribute()",
+        "#httpSession.removeValue()",
+        "#httpSession.servletContext",
+        "#httpSession.sessionContext",
+        "#httpSession.value",
+        "#httpSession.valueNames",
+        "#ids.next()",
+        "#ids.prev()",
+        "#ids.seq()",
+        "#lists.contains()",
+        "#lists.containsAll()",
+        "#lists.empty",
+        "#lists.size()",
+        "#lists.sort()",
+        "#lists.toList()",
+        "#locale.<clinit>()",
+        "#locale.access$600()",
+        "#locale.access$700()",
+        "#locale.access$800()",
+        "#locale.availableLocales",
+        "#locale.baseLocale",
+        "#locale.clone()",
+        "#locale.compatibilityExtensions",
+        "#locale.composeList()",
+        "#locale.convertOldISOCodes()",
+        "#locale.country",
+        "#locale.createConstant()",
+        "#locale.default",
+        "#locale.displayCountry",
+        "#locale.displayLanguage",
+        "#locale.displayName",
+        "#locale.displayScript",
+        "#locale.displayString",
+        "#locale.displayVariant",
+        "#locale.displayVariantArray",
+        "#locale.equals()",
+        "#locale.extension",
+        "#locale.extensionKeys",
+        "#locale.filter()",
+        "#locale.filterTags()",
+        "#locale.forLanguageTag()",
+        "#locale.formatList()",
+        "#locale.hasExtensions()",
+        "#locale.hashCode()",
+        "#locale.iSO2Table",
+        "#locale.iSO3Code",
+        "#locale.iSO3Country",
+        "#locale.iSO3Language",
+        "#locale.iSOCountries",
+        "#locale.iSOLanguages",
+        "#locale.initDefault()",
+        "#locale.instance",
+        "#locale.language",
+        "#locale.localeExtensions",
+        "#locale.lookup()",
+        "#locale.lookupTag()",
+        "#locale.readObject()",
+        "#locale.readResolve()",
+        "#locale.script",
+        "#locale.stripExtensions()",
+        "#locale.toLanguageTag()",
+        "#locale.toString()",
+        "#locale.unicodeExtensionKey",
+        "#locale.unicodeLocaleAttributes",
+        "#locale.unicodeLocaleKeys",
+        "#locale.unicodeLocaleType",
+        "#locale.variant",
+        "#locale.writeObject()",
+        "#maps.containsAllKeys()",
+        "#maps.containsAllValues()",
+        "#maps.containsKey()",
+        "#maps.containsValue()",
+        "#maps.empty",
+        "#maps.size()",
+        "#messages.<clinit>()",
+        "#messages.arrayMsg()",
+        "#messages.arrayMsgOrNull()",
+        "#messages.arrayMsgOrNullWithParams()",
+        "#messages.arrayMsgWithParams()",
+        "#messages.doMsg()",
+        "#messages.listMsg()",
+        "#messages.listMsgOrNull()",
+        "#messages.listMsgOrNullWithParams()",
+        "#messages.listMsgWithParams()",
+        "#messages.msg()",
+        "#messages.msgOrNull()",
+        "#messages.msgOrNullWithParams()",
+        "#messages.msgWithParams()",
+        "#numbers.arrayFormatDecimal()",
+        "#numbers.arrayFormatInteger()",
+        "#numbers.formatDecimal()",
+        "#numbers.formatInteger()",
+        "#numbers.listFormatDecimal()",
+        "#numbers.listFormatInteger()",
+        "#numbers.sequence()",
+        "#objects.arrayNullSafe()",
+        "#objects.listNullSafe()",
+        "#objects.nullSafe()",
+        "#root.<clinit>()",
+        "#root.clone()",
+        "#root.get()",
+        "#root.restrictions",
+        "#sets.contains()",
+        "#sets.containsAll()",
+        "#sets.empty",
+        "#sets.size()",
+        "#sets.toSet()",
+        "#strings.abbreviate()",
+        "#strings.append()",
+        "#strings.arrayAbbreviate()",
+        "#strings.arrayAppend()",
+        "#strings.arrayCapitalize()",
+        "#strings.arrayCapitalizeWords()",
+        "#strings.arrayContains()",
+        "#strings.arrayContainsIgnoreCase()",
+        "#strings.arrayDefaultString()",
+        "#strings.arrayEndsWith()",
+        "#strings.arrayEscapeJava()",
+        "#strings.arrayEscapeJavaScript()",
+        "#strings.arrayEscapeXml()",
+        "#strings.arrayIndexOf()",
+        "#strings.arrayIsEmpty()",
+        "#strings.arrayJoin()",
+        "#strings.arrayLength()",
+        "#strings.arrayMultipleReplace()",
+        "#strings.arrayPrepend()",
+        "#strings.arrayReplace()",
+        "#strings.arraySplit()",
+        "#strings.arrayStartsWith()",
+        "#strings.arraySubstring()",
+        "#strings.arraySubstringAfter()",
+        "#strings.arraySubstringBefore()",
+        "#strings.arrayToLowerCase()",
+        "#strings.arrayToString()",
+        "#strings.arrayToUpperCase()",
+        "#strings.arrayTrim()",
+        "#strings.arrayUnCapitalize()",
+        "#strings.arrayUnescapeJava()",
+        "#strings.arrayUnescapeJavaScript()",
+        "#strings.capitalize()",
+        "#strings.capitalizeWords()",
+        "#strings.concat()",
+        "#strings.concatReplaceNulls()",
+        "#strings.contains()",
+        "#strings.containsIgnoreCase()",
+        "#strings.defaultString()",
+        "#strings.empty",
+        "#strings.endsWith()",
+        "#strings.equals()",
+        "#strings.equalsIgnoreCase()",
+        "#strings.escapeJava()",
+        "#strings.escapeJavaScript()",
+        "#strings.escapeXml()",
+        "#strings.indexOf()",
+        "#strings.isEmpty",
+        "#strings.join",
+        "#strings.length()",
+        "#strings.listAbbreviate()",
+        "#strings.listAppend()",
+        "#strings.listCapitalize()",
+        "#strings.listCapitalizeWords()",
+        "#strings.listContains()",
+        "#strings.listContainsIgnoreCase()",
+        "#strings.listDefaultString()",
+        "#strings.listEndsWith()",
+        "#strings.listEscapeJava()",
+        "#strings.listEscapeJavaScript()",
+        "#strings.listEscapeXml()",
+        "#strings.listIndexOf()",
+        "#strings.listIsEmpty()",
+        "#strings.listJoin()",
+        "#strings.listLength()",
+        "#strings.listMultipleReplace()",
+        "#strings.listPrepend()",
+        "#strings.listReplace()",
+        "#strings.listSplit()",
+        "#strings.listStartsWith()",
+        "#strings.listSubstring()",
+        "#strings.listSubstringAfter()",
+        "#strings.listSubstringBefore()",
+        "#strings.listToLowerCase()",
+        "#strings.listToString()",
+        "#strings.listToUpperCase()",
+        "#strings.listTrim()",
+        "#strings.listUnCapitalize()",
+        "#strings.listUnescapeJava()",
+        "#strings.listUnescapeJavaScript()",
+        "#strings.multipleReplace()",
+        "#strings.prepend()",
+        "#strings.randomAlphanumeric()",
+        "#strings.repeat()",
+        "#strings.replace()",
+        "#strings.split",
+        "#strings.startsWith()",
+        "#strings.substring()",
+        "#strings.substringAfter()",
+        "#strings.substringBefore()",
+        "#strings.toLowerCase()",
+        "#strings.toString()",
+        "#strings.toUpperCase()",
+        "#strings.trim()",
+        "#strings.unCapitalize()",
+        "#strings.unescapeJava()",
+        "#strings.unescapeJavaScript()",
+        "#vars.<clinit>()",
+        "#vars.clone()",
+        "#vars.get()",
+        "#vars.restrictions"
     };
 
     /**
      * Mapping doc to attributes
      */
-    private static HashMap<String, String> docs = new HashMap<String, String>();
+    private static final HashMap<String, String> DOCUMENTATION = new HashMap<String, String>();
 
     static {
-        docs.put("th:alt", "Sets the alt attribute to the result of the expression. \n\nSee also:\n\tth:alt-title");
-        docs.put("th:alt-title", "Sets both the alt and title attributes. \nAuthor:\n\tDaniel Fern&aacutendez\nSince:\n\t1.0");
-        docs.put("th:assert", "A comma-separated list of expressions which should \n be evaluated and produce true for every evaluation, \n raising an exception if not. \nAuthor:\n\tDaniel Fern&aacutendez\nSince:\n\t2.1.0");
-        docs.put("th:attr", "See also:\n\tth:attrappend, th:attrprepend\nReference:\n\tUsing Thymeleaf section 5 on Setting Attribute \n\t Values");
-        docs.put("th:attrappend", "See also:\n\tth:attr, th:attrprepend, th:classappend\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
-        docs.put("th:attrprepend", "See also:\n\tth:attr, th:attrappend\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
-        docs.put("th:case", "See also:\n\tth:switch\nReference:\n\tUsing Thymeleaf section 7.2 on Switch \n\t Statements");
-        docs.put("th:classappend", "See also:\n\tth:attrappend, th:class\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
-        docs.put("th:each", "Reference:\n\tUsing Thymeleaf section 6.2 on Keeping Iteration \n\t Status");
-        docs.put("th:fragment", "See also:\n\tth:include, th:substituteby\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
-        docs.put("th:if", "See also:\n\tth:unless\nReference:\n\tUsing Thymeleaf section 7.1 on Simple \n\t Conditionals");
-        docs.put("th:include", "See also:\n\tth:replace, th:substituteby, th:fragment\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
-        docs.put("th:inline", "Reference:\n\tUsing Thymeleaf section 11 on Inlining\n\nPossible value(s):\n\ttext, javascript, dart");
-        docs.put("th:lang", "Sets the lang attribute to the result of the \n expression. \n\nSee also:\n\tth:lang-xmllang");
-        docs.put("th:lang-xmllang", "Sets both the lang and xml:lang attributes. \nAuthor:\n\tDaniel Fern&aacutendez\nSince:\n\t1.0");
-        docs.put("th:object", "See also:\n\tth:with\nReference:\n\tUsing Thymeleaf section 4.3 on the asterisk \n\t syntax");
-        docs.put("th:remove", "Reference:\n\tUsing Thymeleaf section 8.2 on Removing \n\t Template Fragments\n\nPossible value(s):\n\tall, body, tag, all-but-first");
-        docs.put("th:replace", "See also:\n\tth:include, th:fragment\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
-        docs.put("th:styleappend", "See also:\n\tth:attrappend, th:style\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
-        docs.put("th:substituteby", "See also:\n\tth:include, th:fragment\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
-        docs.put("th:switch", "See also:\n\tth:case, th:if\nReference:\n\tUsing Thymeleaf section section 7.2 on Switch \n\t Statements");
-        docs.put("th:text", "See also:\n\tth:utext\nReference:\n\tUsing Thymeleaf section 3 on Using Texts");
-        docs.put("th:title", "Sets the title attribute to the result of the \n expression. \n\nSee also:\n\tth:alt-title");
-        docs.put("th:unless", "See also:\n\tth:if\nReference:\n\tUsing Thymeleaf section 7.1 on Simple \n\t Conditionals");
-        docs.put("th:utext", "See also:\n\tth:text\nReference:\n\tUsing Thymeleaf section 3.2 on Unescaped Text");
-        docs.put("th:with", "See also:\n\tth:object\nReference:\n\tUsing Thymeleaf section 9 on Local Variables");
-        docs.put("th:xmlbase", "See also:\n\tth:xmllang, th:xmlspace");
-        docs.put("th:xmllang", "See also:\n\tth:xmlbase, th:xmlspace");
-        docs.put("th:xmlspace", "See also:\n\tth:xmlbase, th:xmllang");
-        docs.put("layout:decorator", "Specifies the name of the decorator template to \n apply to a content template. \nThe mechanism for resolving decorator templates is \n the same as that used by Thymeleaf to resolve pages \n in the th:fragment and th:include processors. \nAuthor:\n\tEmanuel Rabina");
-        docs.put("layout:fragment", "Marks sections of the template that can be replaced \n by sections in the content template (if decorating) or \n passed along to included pages (if including), which \n share the same name. \nAuthor:\n\tEmanuel Rabina\n\nCannot appear in tag(s):\n\ttitle");
-        docs.put("layout:include", "Similar to Thymeleaf's th:include, but allows the \n passing of entire element fragments to the included \n template. Useful if you have some HTML that you \n want to reuse, but whose contents are too complex \n to determine or construct with context variables \n alone. \nAuthor:\n\tEmanuel Rabina");
-        docs.put("layout:replace", "Similar to Thymeleaf's th:replace, but allows the \n passing of entire element fragments to the included \n template. Useful if you have some HTML that you \n want to reuse, but whose contents are too complex \n to determine or construct with context variables \n alone. \nAuthor:\n\tEmanuel Rabina");
+        DOCUMENTATION.put("th:alt", "Sets the alt attribute to the result of the expression. \n\nSee also:\n\tth:alt-title");
+        DOCUMENTATION.put("th:alt-title", "Sets both the alt and title attributes. \nAuthor:\n\tDaniel Fern&aacutendez\nSince:\n\t1.0");
+        DOCUMENTATION.put("th:assert", "A comma-separated list of expressions which should \n be evaluated and produce true for every evaluation, \n raising an exception if not. \nAuthor:\n\tDaniel Fern&aacutendez\nSince:\n\t2.1.0");
+        DOCUMENTATION.put("th:attr", "See also:\n\tth:attrappend, th:attrprepend\nReference:\n\tUsing Thymeleaf section 5 on Setting Attribute \n\t Values");
+        DOCUMENTATION.put("th:attrappend", "See also:\n\tth:attr, th:attrprepend, th:classappend\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
+        DOCUMENTATION.put("th:attrprepend", "See also:\n\tth:attr, th:attrappend\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
+        DOCUMENTATION.put("th:case", "See also:\n\tth:switch\nReference:\n\tUsing Thymeleaf section 7.2 on Switch \n\t Statements");
+        DOCUMENTATION.put("th:classappend", "See also:\n\tth:attrappend, th:class\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
+        DOCUMENTATION.put("th:each", "Reference:\n\tUsing Thymeleaf section 6.2 on Keeping Iteration \n\t Status");
+        DOCUMENTATION.put("th:fragment", "See also:\n\tth:include, th:substituteby\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
+        DOCUMENTATION.put("th:if", "See also:\n\tth:unless\nReference:\n\tUsing Thymeleaf section 7.1 on Simple \n\t Conditionals");
+        DOCUMENTATION.put("th:include", "See also:\n\tth:replace, th:substituteby, th:fragment\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
+        DOCUMENTATION.put("th:inline", "Reference:\n\tUsing Thymeleaf section 11 on Inlining\n\nPossible value(s):\n\ttext, javascript, dart");
+        DOCUMENTATION.put("th:lang", "Sets the lang attribute to the result of the \n expression. \n\nSee also:\n\tth:lang-xmllang");
+        DOCUMENTATION.put("th:lang-xmllang", "Sets both the lang and xml:lang attributes. \nAuthor:\n\tDaniel Fern&aacutendez\nSince:\n\t1.0");
+        DOCUMENTATION.put("th:object", "See also:\n\tth:with\nReference:\n\tUsing Thymeleaf section 4.3 on the asterisk \n\t syntax");
+        DOCUMENTATION.put("th:remove", "Reference:\n\tUsing Thymeleaf section 8.2 on Removing \n\t Template Fragments\n\nPossible value(s):\n\tall, body, tag, all-but-first");
+        DOCUMENTATION.put("th:replace", "See also:\n\tth:include, th:fragment\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
+        DOCUMENTATION.put("th:styleappend", "See also:\n\tth:attrappend, th:style\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
+        DOCUMENTATION.put("th:substituteby", "See also:\n\tth:include, th:fragment\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
+        DOCUMENTATION.put("th:switch", "See also:\n\tth:case, th:if\nReference:\n\tUsing Thymeleaf section section 7.2 on Switch \n\t Statements");
+        DOCUMENTATION.put("th:text", "See also:\n\tth:utext\nReference:\n\tUsing Thymeleaf section 3 on Using Texts");
+        DOCUMENTATION.put("th:title", "Sets the title attribute to the result of the \n expression. \n\nSee also:\n\tth:alt-title");
+        DOCUMENTATION.put("th:unless", "See also:\n\tth:if\nReference:\n\tUsing Thymeleaf section 7.1 on Simple \n\t Conditionals");
+        DOCUMENTATION.put("th:utext", "See also:\n\tth:text\nReference:\n\tUsing Thymeleaf section 3.2 on Unescaped Text");
+        DOCUMENTATION.put("th:with", "See also:\n\tth:object\nReference:\n\tUsing Thymeleaf section 9 on Local Variables");
+        DOCUMENTATION.put("th:xmlbase", "See also:\n\tth:xmllang, th:xmlspace");
+        DOCUMENTATION.put("th:xmllang", "See also:\n\tth:xmlbase, th:xmlspace");
+        DOCUMENTATION.put("th:xmlspace", "See also:\n\tth:xmlbase, th:xmllang");
+        DOCUMENTATION.put("layout:decorator", "Specifies the name of the decorator template to \n apply to a content template. \nThe mechanism for resolving decorator templates is \n the same as that used by Thymeleaf to resolve pages \n in the th:fragment and th:include processors. \nAuthor:\n\tEmanuel Rabina");
+        DOCUMENTATION.put("layout:fragment", "Marks sections of the template that can be replaced \n by sections in the content template (if decorating) or \n passed along to included pages (if including), which \n share the same name. \nAuthor:\n\tEmanuel Rabina\n\nCannot appear in tag(s):\n\ttitle");
+        DOCUMENTATION.put("layout:include", "Similar to Thymeleaf's th:include, but allows the \n passing of entire element fragments to the included \n template. Useful if you have some HTML that you \n want to reuse, but whose contents are too complex \n to determine or construct with context variables \n alone. \nAuthor:\n\tEmanuel Rabina");
+        DOCUMENTATION.put("layout:replace", "Similar to Thymeleaf's th:replace, but allows the \n passing of entire element fragments to the included \n template. Useful if you have some HTML that you \n want to reuse, but whose contents are too complex \n to determine or construct with context variables \n alone. \nAuthor:\n\tEmanuel Rabina");
     }
 
     ;
@@ -322,9 +675,17 @@ public class ThymeleafData {
      * @return String[] array of attributes.
      */
     public static String[] getThymeleafAttributes() {
-        return thymeleafAttributes;
+        return THYMELEAF_ATTRIBUTES;
     }
 
+    /**
+     *  Returns array containing Thymeleaf methods.
+     * @return String[] array of methods.
+     */
+    public static String[] getThymeleafMethods() {
+        return THYMELEAF_METHODS;
+    }
+    
     /**
      * Returns description for given Thymeleaf attribute.
      *
@@ -332,7 +693,7 @@ public class ThymeleafData {
      * @return String containing documentation description
      */
     public static String getDoc(String attribute) {
-        return docs.get(attribute);
+        return DOCUMENTATION.get(attribute);
     }
 
 }

@@ -3,6 +3,7 @@ package org.netbeans.modules.thymeleafcodecompletion;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import javax.swing.text.StyledDocument;
+import org.openide.util.Exceptions;
 
 /**
  * Helper methods for auto completion
@@ -13,11 +14,12 @@ import javax.swing.text.StyledDocument;
 public class CompletionUtils {
 
     /**
-     * TODO: javadoc
+     * Gets index of first not space/tab element in line where caret is or caret
+     * position if non found before its location
      *
      * @param doc edited document
      * @param offset current caret position
-     * @return
+     * @return int index of first space or offset passed in if none before it
      * @throws BadLocationException
      */
     static int getRowFirstNonWhite(StyledDocument doc, int offset)
@@ -43,12 +45,12 @@ public class CompletionUtils {
     }
 
     /**
-     * TODO: javadoc
+     * Returns index of last white char in line
      *
-     * @param line
-     * @return
+     * @param line array of chars
+     * @return int index or -1 if not found
      */
-    static int indexOfWhite(char[] line) {
+    static int getIndexOfLastSpace(char[] line) {
         int i = line.length;
         while (--i > -1) {
             final char c = line[i];
@@ -60,12 +62,12 @@ public class CompletionUtils {
     }
 
     /**
-     * Returns index of end of attribute
+     * Gets index of the end of attribute
      *
      * @param line array of chars from begin of attribute to end of line
      * @return index of end of attribute or -1 if something went wrong
      */
-    static int indexOfAttributeEnd(char[] line) {
+    static int getIndexOfAttributesEnd(char[] line) {
         for (int i = 0; i < line.length; i++) {
             final char c = line[i];
             if (Character.isWhitespace(c) || c == '>') {
@@ -100,6 +102,27 @@ public class CompletionUtils {
             carretOffset--;
         }
         return "";
+    }
+
+    static boolean insideAttributesValue(StyledDocument doc, int carretOffset)  {
+        
+        boolean insideQuotes = false;
+        while (carretOffset > 0) {
+            try {
+                String chars = doc.getText(carretOffset - 1, 1);
+                if (chars.equals("<") || chars.equals("\"") && insideQuotes) {
+                    return false;
+                } else if (chars.equals("\"") &&(doc.getText(carretOffset - 2, 1).equals("="))) {
+                    return true;
+                }else if(chars.equals("\"")) {
+                    insideQuotes = true;
+                }
+                carretOffset--;
+            } catch (BadLocationException ex) {
+                Exceptions.printStackTrace(ex);
+            }
+        }
+        return false;
     }
 
 }

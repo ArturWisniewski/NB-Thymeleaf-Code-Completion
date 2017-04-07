@@ -51,6 +51,11 @@ public class ThymeleafCompletionProvider implements CompletionProvider {
         return 0;
     }
 
+    //TODO: tags allowed attributes as hint
+    //             no attributes inside attributes
+    //             methods inside attributes only 
+    //             xmlns inside html tag only
+    //             if no xmlns in html tag no thymeleaf code completion
     /**
      * Logic behind adding completion items (attributes) to hint list
      *
@@ -64,15 +69,15 @@ public class ThymeleafCompletionProvider implements CompletionProvider {
                 int startOffset = caretOffset - 1;
                 try {
                     final StyledDocument styledDocument = (StyledDocument) document;
-                    final String tag = CompletionUtils.getCurrentTagName(styledDocument, caretOffset);
+                    final String currentTag = CompletionUtils.getCurrentTagName(styledDocument, caretOffset);
                     //completion only if caret in tag
-                    if (tag.isEmpty()) {
+                    if (currentTag.isEmpty()) {
                         completionResultSet.finish();
                         return;
                     }
                     final int lineStartOffset = CompletionUtils.getRowFirstNonWhite(styledDocument, caretOffset);
                     final char[] line = styledDocument.getText(lineStartOffset, caretOffset - lineStartOffset).toCharArray();
-                    final int whiteOffset = CompletionUtils.indexOfWhite(line);
+                    final int whiteOffset = CompletionUtils.getIndexOfLastSpace(line);
                     filter = new String(line, whiteOffset + 1, line.length - whiteOffset - 1);
                     if (whiteOffset > 0) {
                         startOffset = lineStartOffset + whiteOffset + 1;
@@ -82,14 +87,32 @@ public class ThymeleafCompletionProvider implements CompletionProvider {
                 } catch (BadLocationException ex) {
                     Exceptions.printStackTrace(ex);
                 }
-
                 if (filter != null) {
-                    //TODO: allowed attributes inside tag
-                    String[] attributes = ThymeleafData.getThymeleafAttributes();
-                    for (int i = 0; i < attributes.length; i++) {
-                        final String attribute = attributes[i];
-                        if (!attribute.equals("") && (attribute.startsWith(filter) || attribute.startsWith("th:" + filter) || attribute.startsWith("layout:" + filter))) {
-                            completionResultSet.addItem(new ThymeleafCompletionItem(attribute, startOffset, caretOffset));
+                    if (!CompletionUtils.insideAttributesValue((StyledDocument) document, caretOffset)) {
+                        String[] attributes = ThymeleafData.getThymeleafAttributes();
+                        for (int i = 0; i < attributes.length; i++) {
+                            final String attribute = attributes[i];
+                            if (!attribute.equals("") && (attribute.startsWith(filter) || attribute.startsWith("th:" + filter) || attribute.startsWith("layout:" + filter))) {
+                                completionResultSet.addItem(new ThymeleafCompletionItem(attribute, startOffset, caretOffset));
+                            }
+                        }
+                    } else {
+                        boolean voidDotOffset = false;
+                        //if(filter.endsWith("=\"")){
+                        if(filter.contains("=\"")){
+                            filter = filter.substring(filter.indexOf("=\"")+2);
+                            System.out.println("Filter:>"+filter+"<");
+                            
+                            voidDotOffset = true;
+                        }
+                        String[] methods = ThymeleafData.getThymeleafMethods();
+                        for (int i = 0; i < methods.length; i++) {
+                            final String method = methods[i];
+                            if (!method.equals("") && (method.startsWith(filter) || method.startsWith("#" + filter))) {
+                                ThymeleafCompletionItem tci  = new ThymeleafCompletionItem(method, startOffset, caretOffset);
+                                if(voidDotOffset) tci.voidDotOffset();
+                                completionResultSet.addItem(tci);
+                            }
                         }
                     }
                 }

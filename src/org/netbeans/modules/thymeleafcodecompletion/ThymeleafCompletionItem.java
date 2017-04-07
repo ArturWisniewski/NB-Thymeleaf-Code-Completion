@@ -49,6 +49,13 @@ public class ThymeleafCompletionItem implements CompletionItem {
         this.caretOffset = caretOffset;
         this.dotOffset = dotOffset;
     }
+    
+    /**
+     * Overrides dot offset (start of word) with current caret position
+     */
+    public void voidDotOffset(){
+        this.dotOffset=this.caretOffset;
+    }
 
     /**
      * TODO: javadoc
@@ -72,7 +79,7 @@ public class ThymeleafCompletionItem implements CompletionItem {
             Caret caret = jtc.getCaret();
 
             int endOffset = doc.getParagraphElement(dotOffset).getEndOffset();
-            int indexOfWhite = CompletionUtils.indexOfAttributeEnd(doc.getText(dotOffset, endOffset - dotOffset).toCharArray());
+            int indexOfWhite = CompletionUtils.getIndexOfAttributesEnd(doc.getText(dotOffset, endOffset - dotOffset).toCharArray());
             if (caretOffset != dotOffset) {
                 doc.remove(dotOffset, indexOfWhite);
             }
