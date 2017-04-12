@@ -24,12 +24,17 @@ import org.openide.util.Exceptions;
 public class ThymeleafCompletionProvider implements CompletionProvider {
 
     /**
-     * Creates new Completion task but only if query type is
-     * COMPLETION_QUERY_TYPE
+     * Creates a task that performs a query of the given type on the given
+     * component. If query is not of COMPLETION_QUERY_TYPE returns null For more
+     * check CopletionProvider javadoc.
      *
-     * @param queryType type of the query
-     * @param jTextComponent TODO
-     * @return AsyncCompletionTask or null
+     * @param queryType Type of the query. It can be one of the
+     * COMPLETION_QUERY_TYPE, COMPLETION_ALL_QUERY_TYPE,
+     * DOCUMENTATION_QUERY_TYPE, or TOOLTIP_QUERY_TYPE (but not their
+     * combination).
+     * @param jTextComponent A text component where the query should be
+     * performed.
+     * @return A task performing the query.
      */
     @Override
     public CompletionTask createTask(int queryType, JTextComponent jTextComponent) {
@@ -40,22 +45,29 @@ public class ThymeleafCompletionProvider implements CompletionProvider {
     }
 
     /**
-     * TODO: javadoc
+     * Determines whether text typed in a document should automatically pop up
+     * the code completion window. This method is called by the code completion
+     * infrastructure only to check whether text that has just been typed into a
+     * text component triggers an automatic query invocation. For more check
+     * CopletionProvider javadoc.
      *
-     * @param jTextComponent TODO
-     * @param string TODO
-     * @return int
+     * @param jTextComponent A component in which the text was typed.
+     * @param typedText Typed text.
+     * @return Any combination of the COMPLETION_QUERY_TYPE,
+     * COMPLETION_ALL_QUERY_TYPE, DOCUMENTATION_QUERY_TYPE, and
+     * TOOLTIP_QUERY_TYPE values, or zero if no query should be automatically
+     * invoked.
      */
     @Override
-    public int getAutoQueryTypes(JTextComponent jTextComponent, String string) {
+    public int getAutoQueryTypes(JTextComponent jTextComponent, String typedText) {
         return 0;
     }
 
-    //TODO: tags allowed attributes as hint
-    //             no attributes inside attributes
-    //             methods inside attributes only 
-    //             xmlns inside html tag only
+    //TODO: 
     //             if no xmlns in html tag no thymeleaf code completion
+    //             tags  - only allowed attributes as hint
+    //             xmlns inside html tag only
+    //             
     /**
      * Logic behind adding completion items (attributes) to hint list
      *
@@ -65,12 +77,13 @@ public class ThymeleafCompletionProvider implements CompletionProvider {
         return new AsyncCompletionQuery() {
             @Override
             protected void query(CompletionResultSet completionResultSet, Document document, int caretOffset) {
+
+                final StyledDocument styledDocument = (StyledDocument) document;
                 String filter = null;
                 int startOffset = caretOffset - 1;
+
                 try {
-                    final StyledDocument styledDocument = (StyledDocument) document;
                     final String currentTag = CompletionUtils.getCurrentTagName(styledDocument, caretOffset);
-                    //completion only if caret in tag
                     if (currentTag.isEmpty()) {
                         completionResultSet.finish();
                         return;
@@ -88,30 +101,25 @@ public class ThymeleafCompletionProvider implements CompletionProvider {
                     Exceptions.printStackTrace(ex);
                 }
                 if (filter != null) {
-                    if (!CompletionUtils.insideAttributesValue((StyledDocument) document, caretOffset)) {
+                    if (!CompletionUtils.insideAttribute((StyledDocument) document, caretOffset)) {
                         String[] attributes = ThymeleafData.getThymeleafAttributes();
                         for (int i = 0; i < attributes.length; i++) {
                             final String attribute = attributes[i];
-                            if (!attribute.equals("") && (attribute.startsWith(filter) || attribute.startsWith("th:" + filter) || attribute.startsWith("layout:" + filter))) {
+                            if (!attribute.equals("") && ((attribute.startsWith(filter) || attribute.startsWith("th:" + filter) || attribute.startsWith("layout:" + filter)))) {
                                 completionResultSet.addItem(new ThymeleafCompletionItem(attribute, startOffset, caretOffset));
                             }
                         }
                     } else {
-                        boolean voidDotOffset = false;
-                        //if(filter.endsWith("=\"")){
-                        if(filter.contains("=\"")){
-                            filter = filter.substring(filter.indexOf("=\"")+2);
-                            System.out.println("Filter:>"+filter+"<");
-                            
-                            voidDotOffset = true;
+                        if (filter.contains("=\"")) {
+                            int index = filter.indexOf("=\"") + 2;
+                            filter = filter.substring(index);
+                            startOffset = startOffset + index;
                         }
                         String[] methods = ThymeleafData.getThymeleafMethods();
                         for (int i = 0; i < methods.length; i++) {
                             final String method = methods[i];
                             if (!method.equals("") && (method.startsWith(filter) || method.startsWith("#" + filter))) {
-                                ThymeleafCompletionItem tci  = new ThymeleafCompletionItem(method, startOffset, caretOffset);
-                                if(voidDotOffset) tci.voidDotOffset();
-                                completionResultSet.addItem(tci);
+                                completionResultSet.addItem(new ThymeleafCompletionItem(method, startOffset, caretOffset));
                             }
                         }
                     }
@@ -120,5 +128,4 @@ public class ThymeleafCompletionProvider implements CompletionProvider {
             }
         };
     }
-
 }

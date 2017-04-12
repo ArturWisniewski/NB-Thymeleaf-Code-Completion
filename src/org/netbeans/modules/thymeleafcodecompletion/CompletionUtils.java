@@ -18,13 +18,14 @@ public class CompletionUtils {
      * position if non found before its location
      *
      * @param doc edited document
-     * @param offset current caret position
-     * @return int index of first space or offset passed in if none before it
+     * @param caretOffset current caret position
+     * @return Integer index of first space or offset passed in if none before
+     * it
      * @throws BadLocationException
      */
-    static int getRowFirstNonWhite(StyledDocument doc, int offset)
+    static int getRowFirstNonWhite(StyledDocument doc, int caretOffset)
             throws BadLocationException {
-        Element lineElement = doc.getParagraphElement(offset);//line start/stop offsets
+        Element lineElement = doc.getParagraphElement(caretOffset);//line start&stop offsets
 
         int start = lineElement.getStartOffset();
         int failsafe = start;
@@ -41,7 +42,7 @@ public class CompletionUtils {
             }
             start++;
         }
-        return start > offset ? failsafe : start;
+        return start > caretOffset ? failsafe : start;
     }
 
     /**
@@ -70,7 +71,7 @@ public class CompletionUtils {
     static int getIndexOfAttributesEnd(char[] line) {
         for (int i = 0; i < line.length; i++) {
             final char c = line[i];
-            if (Character.isWhitespace(c) || c == '>') {
+            if (Character.isWhitespace(c) || c == '"' || c == '>') {
                 return i;
             }
         }
@@ -80,49 +81,51 @@ public class CompletionUtils {
     /**
      * Checks if caret is inside tag and returns tags name
      *
-     * @param doc edited text
-     * @param carretOffset current caret location offset
+     * @param doc edited document
+     * @param caretOffset current caret location offset
      * @return String tag name or empty if not inside tag
      * @throws BadLocationException
      */
-    static String getCurrentTagName(StyledDocument doc, int carretOffset) throws BadLocationException {
-        int lastWhiteSpace = carretOffset;
-        while (carretOffset > 0) {
-            String chars = doc.getText(carretOffset - 1, 1);
+    static String getCurrentTagName(StyledDocument doc, int caretOffset) throws BadLocationException {
+        int lastWhiteSpace = caretOffset;
+        while (caretOffset > 0) {
+            String chars = doc.getText(caretOffset - 1, 1);
             if (chars.equals(">")) {
                 break;
             } else if (chars.equals(" ")) {
-                lastWhiteSpace = carretOffset;
+                lastWhiteSpace = caretOffset;
             } else if (chars.equals("<")) {
-                //DEBUG INFO - i know where tag is and can read it
-                //System.out.println(carretOffset + " <----> " + lastWhiteSpace + " <----> " + (lastWhiteSpace - carretOffset));
-                //System.out.println(doc.getText(carretOffset, lastWhiteSpace - carretOffset));
-                return doc.getText(carretOffset, lastWhiteSpace - carretOffset);
+                return doc.getText(caretOffset, lastWhiteSpace - caretOffset);
             }
-            carretOffset--;
+            caretOffset--;
         }
         return "";
     }
 
-    static boolean insideAttributesValue(StyledDocument doc, int carretOffset)  {
-        
+    /**
+     * Checks if caret position is inside attributes quotes
+     *
+     * @param doc edited document
+     * @param caretOffset current caret location offset
+     * @return true if caret inside attribute
+     */
+    static boolean insideAttribute(StyledDocument doc, int caretOffset) {
         boolean insideQuotes = false;
-        while (carretOffset > 0) {
+        while (caretOffset > 0) {
             try {
-                String chars = doc.getText(carretOffset - 1, 1);
+                String chars = doc.getText(caretOffset - 1, 1);
                 if (chars.equals("<") || chars.equals("\"") && insideQuotes) {
                     return false;
-                } else if (chars.equals("\"") &&(doc.getText(carretOffset - 2, 1).equals("="))) {
+                } else if (chars.equals("\"") && (doc.getText(caretOffset - 2, 1).equals("="))) {
                     return true;
-                }else if(chars.equals("\"")) {
+                } else if (chars.equals("\"")) {
                     insideQuotes = true;
                 }
-                carretOffset--;
+                caretOffset--;
             } catch (BadLocationException ex) {
                 Exceptions.printStackTrace(ex);
             }
         }
         return false;
     }
-
 }
