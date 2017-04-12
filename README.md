@@ -3,9 +3,7 @@ Code completion for Thymeleaf on Netbeans 8.2
 
 ![Alt text](/thymeleafcc.png?raw=true "Example")
 
-This is only draft, not tested quickfix.
-Do not use on production.
-Basic funcionality only: attributes, xmlns
-TODO: attributes doc, attributes only inside html tags, no tags duplicate, testing, refactoring, javadoc
-
-Artur Wiśniewski
+Do not use on production.</br>
+Functionality: eclipse version alike.</br>
+Todo: testing, refactoring, attributes duplication, disable cc if no xmlns:th="" present, xmlns cc only in html tag
+</br>Artur Wiśniewski
