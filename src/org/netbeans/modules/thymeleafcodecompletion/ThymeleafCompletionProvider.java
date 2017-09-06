@@ -98,8 +98,7 @@ public class ThymeleafCompletionProvider implements CompletionProvider {
                 }
                 if (filter != null) {
                     if (!CompletionUtils.insideAttribute((StyledDocument) document, caretOffset)) {
-                        String[] attributes = ThymeleafData.getThymeleafAttributes();
-                        for (String attribute : attributes) {
+                        for (String attribute : ThymeleafData.getThymeleafAttributes()) {
                             if (!attribute.isEmpty() && filterMatchThymeleafAttribute(attribute, filter)) {
                                 completionResultSet.addItem(new ThymeleafCompletionItem(attribute, startOffset, caretOffset));
                             }
@@ -110,8 +109,7 @@ public class ThymeleafCompletionProvider implements CompletionProvider {
                             filter = filter.substring(index);
                             startOffset = startOffset + index;
                         }
-                        String[] methods = ThymeleafData.getThymeleafMethods();
-                        for (String method : methods) {
+                        for (String method : ThymeleafData.getThymeleafMethods()) {
                             if (!method.isEmpty() && filterMatchThymeleafMethod(method, filter)) {
                                 completionResultSet.addItem(new ThymeleafCompletionItem(method, startOffset, caretOffset));
                             }

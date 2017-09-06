@@ -1,8 +1,8 @@
 package org.netbeans.modules.thymeleafcodecompletion;
 
+import java.util.Arrays;
 import java.util.HashMap;
-
-import static java.util.Arrays.copyOf;
+import java.util.List;
 
 /**
  * Thymeleaf attributes and documentation
@@ -935,19 +935,19 @@ public class ThymeleafData {
 
     /**
      *  Returns array containing Thymeleaf attributes.
-     * @return String[] array of attributes.
+     * @return List of attributes.
      */
-    public static String[] getThymeleafAttributes() {
-        return copyOf(THYMELEAF_METHODS, THYMELEAF_ATTRIBUTES.length);
+    public static List<String> getThymeleafAttributes() {
+        return Arrays.asList(THYMELEAF_ATTRIBUTES);
     }
 
     /**
      * Returns array containing Thymeleaf methods.
      *
-     * @return String[] array of methods.
+     * @return List of methods.
      */
-    public static String[] getThymeleafMethods() {
-        return copyOf(THYMELEAF_METHODS, THYMELEAF_METHODS.length);
+    public static List<String> getThymeleafMethods() {
+        return Arrays.asList(THYMELEAF_METHODS);
     }
 
     /**
