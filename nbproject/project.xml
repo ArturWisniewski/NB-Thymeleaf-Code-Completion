@@ -45,5 +45,8 @@
                 <package>org.netbeans.modules.thymeleafcodecompletion</package>
             </public-packages>
         </data>
+        <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>popup</word>
+        </spellchecker-wordlist>
     </configuration>
 </project>

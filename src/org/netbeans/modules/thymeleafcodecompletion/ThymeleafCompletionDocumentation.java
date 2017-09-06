@@ -1,7 +1,9 @@
 package org.netbeans.modules.thymeleafcodecompletion;
 
 import java.net.URL;
+
 import javax.swing.Action;
+
 import org.netbeans.spi.editor.completion.CompletionDocumentation;
 
 /**
@@ -12,9 +14,9 @@ import org.netbeans.spi.editor.completion.CompletionDocumentation;
 public class ThymeleafCompletionDocumentation implements CompletionDocumentation {
 
     /**
-     * Completion Item containing Thymelef attribute.
+     * Completion Item containing Thymeleaf attribute.
      */
-    private ThymeleafCompletionItem item;
+    private final ThymeleafCompletionItem item;
 
     /**
      *
