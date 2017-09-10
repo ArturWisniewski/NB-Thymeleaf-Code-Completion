@@ -1,6 +1,8 @@
 package org.netbeans.modules.thymeleafcodecompletion;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Thymeleaf attributes and documentation
@@ -246,11 +248,239 @@ public class ThymeleafData {
         "th:wrap",
         "th:xmlbase",
         "th:xmllang",
-        "th:xmlspace"
+        "th:xmlspace",
+        "data-layout-decorator",
+        "data-layout-fragment",
+        "data-layout-include",
+        "data-layout-replace",
+        "data-th-abbr",
+        "data-th-accept",
+        "data-th-accept-charset",
+        "data-th-accesskey",
+        "data-th-action",
+        "data-th-align",
+        "data-th-alt",
+        "data-th-alt-title",
+        "data-th-archive",
+        "data-th-assert",
+        "data-th-async",
+        "data-th-attr",
+        "data-th-attrappend",
+        "data-th-attrprepend",
+        "data-th-audio",
+        "data-th-autocomplete",
+        "data-th-autofocus",
+        "data-th-autoplay",
+        "data-th-axis",
+        "data-th-background",
+        "data-th-bgcolor",
+        "data-th-border",
+        "data-th-block", //none in eclipse plugin
+        "data-th-case",
+        "data-th-cellpadding",
+        "data-th-cellspacing",
+        "data-th-challenge",
+        "data-th-charset",
+        "data-th-checked",
+        "data-th-cite",
+        "data-th-class",
+        "data-th-classappend",
+        "data-th-classid",
+        "data-th-codebase",
+        "data-th-codetype",
+        "data-th-cols",
+        "data-th-colspan",
+        "data-th-compact",
+        "data-th-content",
+        "data-th-contenteditable",
+        "data-th-contextmenu",
+        "data-th-controls",
+        "data-th-data",
+        "data-th-datetime",
+        "data-th-declare",
+        "data-th-default",
+        "data-th-defer",
+        "data-th-dir",
+        "data-th-disabled",
+        "data-th-draggable",
+        "data-th-dropzone",
+        "data-th-each",
+        "data-th-enctype",
+        "data-th-for",
+        "data-th-form",
+        "data-th-formaction",
+        "data-th-formenctype",
+        "data-th-formmethod",
+        "data-th-formnovalidate",
+        "data-th-formtarget",
+        "data-th-fragment",
+        "data-th-frame",
+        "data-th-frameborder",
+        "data-th-headers",
+        "data-th-height",
+        "data-th-hidden",
+        "data-th-high",
+        "data-th-href",
+        "data-th-hreflang",
+        "data-th-hspace",
+        "data-th-http-equiv",
+        "data-th-icon",
+        "data-th-id",
+        "data-th-if",
+        "data-th-include",
+        "data-th-inline",
+        "data-th-ismap",
+        "data-th-insert", //thymeleaf ver 3
+        "data-th-keytype",
+        "data-th-kind",
+        "data-th-label",
+        "data-th-lang",
+        "data-th-lang-xmllang",
+        "data-th-list",
+        "data-th-longdesc",
+        "data-th-loop",
+        "data-th-low",
+        "data-th-manifest",
+        "data-th-marginheight",
+        "data-th-marginwidth",
+        "data-th-max",
+        "data-th-maxlength",
+        "data-th-media",
+        "data-th-method",
+        "data-th-min",
+        "data-th-multiple",
+        "data-th-name",
+        "data-th-novalidate",
+        "data-th-nowarp",
+        "data-th-object",
+        "data-th-onabort",
+        "data-th-onafterprint",
+        "data-th-onbeforeprint",
+        "data-th-onbeforeunload",
+        "data-th-onblur",
+        "data-th-oncanplay",
+        "data-th-oncanplaythrough",
+        "data-th-onchange",
+        "data-th-onclick",
+        "data-th-oncontextmenu",
+        "data-th-ondblclick",
+        "data-th-ondrag",
+        "data-th-ondragend",
+        "data-th-ondragenter",
+        "data-th-ondragleave",
+        "data-th-ondragover",
+        "data-th-ondragstart",
+        "data-th-ondrop",
+        "data-th-ondurationchange",
+        "data-th-onemptied",
+        "data-th-onended",
+        "data-th-onerror",
+        "data-th-onfocus",
+        "data-th-onformchange",
+        "data-th-onforminput",
+        "data-th-onhashchange",
+        "data-th-oninput",
+        "data-th-oninvalid",
+        "data-th-onkeydown",
+        "data-th-onkeypress",
+        "data-th-onkeyup",
+        "data-th-onload",
+        "data-th-onloadeddata",
+        "data-th-onloadedmetadata",
+        "data-th-onloadstart",
+        "data-th-onmessage",
+        "data-th-onmousedown",
+        "data-th-onmousemove",
+        "data-th-onmouseout",
+        "data-th-onmouseover",
+        "data-th-onmouseup",
+        "data-th-onmousewheel",
+        "data-th-onoffline",
+        "data-th-ononline",
+        "data-th-onpause",
+        "data-th-onplay",
+        "data-th-onplaying",
+        "data-th-onpopstate",
+        "data-th-onprogress",
+        "data-th-onratechange",
+        "data-th-onreadystatechange",
+        "data-th-onredo",
+        "data-th-onreset",
+        "data-th-onresize",
+        "data-th-onscroll",
+        "data-th-onseeked",
+        "data-th-onseeking",
+        "data-th-onselect",
+        "data-th-onshow",
+        "data-th-onstalled",
+        "data-th-onstorage",
+        "data-th-onsubmit",
+        "data-th-onsuspend",
+        "data-th-ontimeupdate",
+        "data-th-onundo",
+        "data-th-onunload",
+        "data-th-onvolumechange",
+        "data-th-onwaiting",
+        "data-th-open",
+        "data-th-optimum",
+        "data-th-pattern",
+        "data-th-placeholder",
+        "data-th-poster",
+        "data-th-preload",
+        "data-th-pubdate",
+        "data-th-radiogroup",
+        "data-th-readonly",
+        "data-th-rel",
+        "data-th-remove",
+        "data-th-replace",
+        "data-th-required",
+        "data-th-rev",
+        "data-th-reversed",
+        "data-th-rows",
+        "data-th-rowspan",
+        "data-th-rules",
+        "data-th-sandbox",
+        "data-th-scheme",
+        "data-th-scope",
+        "data-th-scoped",
+        "data-th-scrolling",
+        "data-th-seamless",
+        "data-th-selected",
+        "data-th-size",
+        "data-th-sizes",
+        "data-th-span",
+        "data-th-spellcheck",
+        "data-th-src",
+        "data-th-srclang",
+        "data-th-standby",
+        "data-th-start",
+        "data-th-step",
+        "data-th-style",
+        "data-th-styleappend",
+        "data-th-substituteby",
+        "data-th-summary",
+        "data-th-switch",
+        "data-th-tabindex",
+        "data-th-target",
+        "data-th-text",
+        "data-th-title",
+        "data-th-type",
+        "data-th-unless",
+        "data-th-usemap",
+        "data-th-utext",
+        "data-th-value",
+        "data-th-valuetype",
+        "data-th-vspace",
+        "data-th-width",
+        "data-th-with",
+        "data-th-wrap",
+        "data-th-xmlbase",
+        "data-th-xmllang",
+        "data-th-xmlspace"
     };
-/**
- * Array of thymeleaf methods
- */
+    /**
+     * Array of thymeleaf methods
+     */
     private static final String[] THYMELEAF_METHODS = {
         "#aggregates.avg()",
         "#aggregates.sum()",
@@ -666,26 +896,60 @@ public class ThymeleafData {
         DOCUMENTATION.put("layout:fragment", "Marks sections of the template that can be replaced \n by sections in the content template (if decorating) or \n passed along to included pages (if including), which \n share the same name. \nAuthor:\n\tEmanuel Rabina\n\nCannot appear in tag(s):\n\ttitle");
         DOCUMENTATION.put("layout:include", "Similar to Thymeleaf's th:include, but allows the \n passing of entire element fragments to the included \n template. Useful if you have some HTML that you \n want to reuse, but whose contents are too complex \n to determine or construct with context variables \n alone. \nAuthor:\n\tEmanuel Rabina");
         DOCUMENTATION.put("layout:replace", "Similar to Thymeleaf's th:replace, but allows the \n passing of entire element fragments to the included \n template. Useful if you have some HTML that you \n want to reuse, but whose contents are too complex \n to determine or construct with context variables \n alone. \nAuthor:\n\tEmanuel Rabina");
+        DOCUMENTATION.put("data-th-alt", "Sets the alt attribute to the result of the expression. \n\nSee also:\n\tth:alt-title");
+        DOCUMENTATION.put("data-th-alt-title", "Sets both the alt and title attributes. \nAuthor:\n\tDaniel Fern&aacutendez\nSince:\n\t1.0");
+        DOCUMENTATION.put("data-th-assert", "A comma-separated list of expressions which should \n be evaluated and produce true for every evaluation, \n raising an exception if not. \nAuthor:\n\tDaniel Fern&aacutendez\nSince:\n\t2.1.0");
+        DOCUMENTATION.put("data-th-attr", "See also:\n\tth:attrappend, th:attrprepend\nReference:\n\tUsing Thymeleaf section 5 on Setting Attribute \n\t Values");
+        DOCUMENTATION.put("data-th-attrappend", "See also:\n\tth:attr, th:attrprepend, th:classappend\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
+        DOCUMENTATION.put("data-th-attrprepend", "See also:\n\tth:attr, th:attrappend\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
+        DOCUMENTATION.put("data-th-case", "See also:\n\tth:switch\nReference:\n\tUsing Thymeleaf section 7.2 on Switch \n\t Statements");
+        DOCUMENTATION.put("data-th-classappend", "See also:\n\tth:attrappend, th:class\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
+        DOCUMENTATION.put("data-th-each", "Reference:\n\tUsing Thymeleaf section 6.2 on Keeping Iteration \n\t Status");
+        DOCUMENTATION.put("data-th-fragment", "See also:\n\tth:include, th:substituteby\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
+        DOCUMENTATION.put("data-th-if", "See also:\n\tth:unless\nReference:\n\tUsing Thymeleaf section 7.1 on Simple \n\t Conditionals");
+        DOCUMENTATION.put("data-th-include", "See also:\n\tth:replace, th:substituteby, th:fragment\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
+        DOCUMENTATION.put("data-th-inline", "Reference:\n\tUsing Thymeleaf section 11 on Inlining\n\nPossible value(s):\n\ttext, javascript, dart");
+        DOCUMENTATION.put("data-th-lang", "Sets the lang attribute to the result of the \n expression. \n\nSee also:\n\tth:lang-xmllang");
+        DOCUMENTATION.put("data-th-lang-xmllang", "Sets both the lang and xml:lang attributes. \nAuthor:\n\tDaniel Fern&aacutendez\nSince:\n\t1.0");
+        DOCUMENTATION.put("data-th-object", "See also:\n\tth:with\nReference:\n\tUsing Thymeleaf section 4.3 on the asterisk \n\t syntax");
+        DOCUMENTATION.put("data-th-remove", "Reference:\n\tUsing Thymeleaf section 8.2 on Removing \n\t Template Fragments\n\nPossible value(s):\n\tall, body, tag, all-but-first");
+        DOCUMENTATION.put("data-th-replace", "See also:\n\tth:include, th:fragment\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
+        DOCUMENTATION.put("data-th-styleappend", "See also:\n\tth:attrappend, th:style\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
+        DOCUMENTATION.put("data-th-substituteby", "See also:\n\tth:include, th:fragment\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
+        DOCUMENTATION.put("data-th-switch", "See also:\n\tth:case, th:if\nReference:\n\tUsing Thymeleaf section section 7.2 on Switch \n\t Statements");
+        DOCUMENTATION.put("data-th-text", "See also:\n\tth:utext\nReference:\n\tUsing Thymeleaf section 3 on Using Texts");
+        DOCUMENTATION.put("data-th-title", "Sets the title attribute to the result of the \n expression. \n\nSee also:\n\tth:alt-title");
+        DOCUMENTATION.put("data-th-unless", "See also:\n\tth:if\nReference:\n\tUsing Thymeleaf section 7.1 on Simple \n\t Conditionals");
+        DOCUMENTATION.put("data-th-utext", "See also:\n\tth:text\nReference:\n\tUsing Thymeleaf section 3.2 on Unescaped Text");
+        DOCUMENTATION.put("data-th-with", "See also:\n\tth:object\nReference:\n\tUsing Thymeleaf section 9 on Local Variables");
+        DOCUMENTATION.put("data-th-xmlbase", "See also:\n\tth:xmllang, th:xmlspace");
+        DOCUMENTATION.put("data-th-xmllang", "See also:\n\tth:xmlbase, th:xmlspace");
+        DOCUMENTATION.put("data-th-xmlspace", "See also:\n\tth:xmlbase, th:xmllang");
+        DOCUMENTATION.put("data-layout-decorator", "Specifies the name of the decorator template to \n apply to a content template. \nThe mechanism for resolving decorator templates is \n the same as that used by Thymeleaf to resolve pages \n in the th:fragment and th:include processors. \nAuthor:\n\tEmanuel Rabina");
+        DOCUMENTATION.put("data-layout-fragment", "Marks sections of the template that can be replaced \n by sections in the content template (if decorating) or \n passed along to included pages (if including), which \n share the same name. \nAuthor:\n\tEmanuel Rabina\n\nCannot appear in tag(s):\n\ttitle");
+        DOCUMENTATION.put("data-layout-include", "Similar to Thymeleaf's th:include, but allows the \n passing of entire element fragments to the included \n template. Useful if you have some HTML that you \n want to reuse, but whose contents are too complex \n to determine or construct with context variables \n alone. \nAuthor:\n\tEmanuel Rabina");
+        DOCUMENTATION.put("data-layout-replace", "Similar to Thymeleaf's th:replace, but allows the \n passing of entire element fragments to the included \n template. Useful if you have some HTML that you \n want to reuse, but whose contents are too complex \n to determine or construct with context variables \n alone. \nAuthor:\n\tEmanuel Rabina");
     }
 
     ;
 
     /**
      *  Returns array containing Thymeleaf attributes.
-     * @return String[] array of attributes.
+     * @return List of attributes.
      */
-    public static String[] getThymeleafAttributes() {
-        return THYMELEAF_ATTRIBUTES;
+    public static List<String> getThymeleafAttributes() {
+        return Arrays.asList(THYMELEAF_ATTRIBUTES);
     }
 
     /**
-     *  Returns array containing Thymeleaf methods.
-     * @return String[] array of methods.
+     * Returns array containing Thymeleaf methods.
+     *
+     * @return List of methods.
      */
-    public static String[] getThymeleafMethods() {
-        return THYMELEAF_METHODS;
+    public static List<String> getThymeleafMethods() {
+        return Arrays.asList(THYMELEAF_METHODS);
     }
-    
+
     /**
      * Returns description for given Thymeleaf attribute.
      *

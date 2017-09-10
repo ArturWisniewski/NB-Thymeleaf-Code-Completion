@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+
 import javax.swing.ImageIcon;
 import javax.swing.JToolTip;
 import javax.swing.text.BadLocationException;
@@ -11,6 +12,7 @@ import javax.swing.text.Caret;
 import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.StyledDocument;
+
 import org.netbeans.api.editor.completion.Completion;
 import org.netbeans.spi.editor.completion.CompletionItem;
 import org.netbeans.spi.editor.completion.CompletionResultSet;
@@ -18,8 +20,8 @@ import org.netbeans.spi.editor.completion.CompletionTask;
 import org.netbeans.spi.editor.completion.support.AsyncCompletionQuery;
 import org.netbeans.spi.editor.completion.support.AsyncCompletionTask;
 import org.netbeans.spi.editor.completion.support.CompletionUtilities;
-import org.openide.util.ImageUtilities;
 import org.openide.util.Exceptions;
+import org.openide.util.ImageUtilities;
 
 /**
  * Implements single item of the result list that can be displayed in the
@@ -30,12 +32,13 @@ import org.openide.util.Exceptions;
  */
 public class ThymeleafCompletionItem implements CompletionItem {
 
-    private String text;
-    private static Color fieldColor = Color.decode("0x0000B2");
-    private static ImageIcon fieldIcon = new ImageIcon(ImageUtilities.loadImage("org/netbeans/modules/thymeleafcodecompletion/Thymeleaf.png"));
-    private int caretOffset;
-    private int dotOffset;
-    private static final String info = "Thymeleaf";
+    private static final Color FIELD_COLOR = Color.decode("0x0000B2");
+    private static final ImageIcon FIELD_ICON = new ImageIcon(ImageUtilities.loadImage("org/netbeans/modules/thymeleafcodecompletion/Thymeleaf.png"));
+    private static final String INFO = "Thymeleaf";
+
+    private final String text;
+    private final int caretOffset;
+    private final int dotOffset;
 
     /**
      * Constructor
@@ -77,7 +80,7 @@ public class ThymeleafCompletionItem implements CompletionItem {
             if (caretOffset != dotOffset) {
                 doc.remove(dotOffset, indexOfWhite);
             }
-            if (text.startsWith("th:") || text.startsWith("layout:")) {
+            if (text.startsWith("th:") || text.startsWith("layout:") || text.startsWith("data")) {
                 String attribute = text + "=\"\"";
                 if (caretOffset == dotOffset) {
                     attribute += " ";
@@ -107,7 +110,7 @@ public class ThymeleafCompletionItem implements CompletionItem {
      */
     @Override
     public int getPreferredWidth(Graphics graphics, Font font) {
-        return CompletionUtilities.getPreferredWidth(text, info, graphics, font);
+        return CompletionUtilities.getPreferredWidth(text, INFO, graphics, font);
     }
 
     /**
@@ -124,7 +127,7 @@ public class ThymeleafCompletionItem implements CompletionItem {
      */
     @Override
     public void render(Graphics graphics, Font defaultFont, Color defaultColor, Color backgroundColor, int width, int height, boolean selected) {
-        CompletionUtilities.renderHtml(fieldIcon, text, info, graphics, defaultFont, (selected ? Color.white : fieldColor), width, height, selected);
+        CompletionUtilities.renderHtml(FIELD_ICON, text, INFO, graphics, defaultFont, (selected ? Color.white : FIELD_COLOR), width, height, selected);
     }
 
     /**

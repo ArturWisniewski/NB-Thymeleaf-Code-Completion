@@ -4,6 +4,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.StyledDocument;
+
 import org.netbeans.api.editor.mimelookup.MimeRegistration;
 import org.netbeans.spi.editor.completion.CompletionProvider;
 import org.netbeans.spi.editor.completion.CompletionResultSet;
@@ -63,11 +64,6 @@ public class ThymeleafCompletionProvider implements CompletionProvider {
         return 0;
     }
 
-    //TODO: 
-    //             if no xmlns in html tag no thymeleaf code completion
-    //             tags  - only allowed attributes as hint
-    //             xmlns inside html tag only
-    //             
     /**
      * Logic behind adding completion items (attributes) to hint list
      *
@@ -102,10 +98,8 @@ public class ThymeleafCompletionProvider implements CompletionProvider {
                 }
                 if (filter != null) {
                     if (!CompletionUtils.insideAttribute((StyledDocument) document, caretOffset)) {
-                        String[] attributes = ThymeleafData.getThymeleafAttributes();
-                        for (int i = 0; i < attributes.length; i++) {
-                            final String attribute = attributes[i];
-                            if (!attribute.equals("") && ((attribute.startsWith(filter) || attribute.startsWith("th:" + filter) || attribute.startsWith("layout:" + filter)))) {
+                        for (String attribute : ThymeleafData.getThymeleafAttributes()) {
+                            if (!attribute.isEmpty() && filterMatchThymeleafAttribute(attribute, filter)) {
                                 completionResultSet.addItem(new ThymeleafCompletionItem(attribute, startOffset, caretOffset));
                             }
                         }
@@ -115,16 +109,26 @@ public class ThymeleafCompletionProvider implements CompletionProvider {
                             filter = filter.substring(index);
                             startOffset = startOffset + index;
                         }
-                        String[] methods = ThymeleafData.getThymeleafMethods();
-                        for (int i = 0; i < methods.length; i++) {
-                            final String method = methods[i];
-                            if (!method.equals("") && (method.startsWith(filter) || method.startsWith("#" + filter))) {
+                        for (String method : ThymeleafData.getThymeleafMethods()) {
+                            if (!method.isEmpty() && filterMatchThymeleafMethod(method, filter)) {
                                 completionResultSet.addItem(new ThymeleafCompletionItem(method, startOffset, caretOffset));
                             }
                         }
                     }
                 }
                 completionResultSet.finish();
+            }
+
+            private boolean filterMatchThymeleafAttribute(String attribute, String filter) {
+                return attribute.startsWith(filter)
+                        || attribute.startsWith("th:" + filter)
+                        || attribute.startsWith("layout:" + filter)
+                        || attribute.startsWith("data-th" + filter)
+                        || attribute.startsWith("data-layout" + filter);
+            }
+
+            private boolean filterMatchThymeleafMethod(String method, String filter) {
+                return method.startsWith(filter) || method.startsWith("#" + filter);
             }
         };
     }
