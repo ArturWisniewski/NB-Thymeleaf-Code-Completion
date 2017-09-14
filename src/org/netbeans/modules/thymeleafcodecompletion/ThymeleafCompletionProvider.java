@@ -123,8 +123,8 @@ public class ThymeleafCompletionProvider implements CompletionProvider {
                 return attribute.startsWith(filter)
                         || attribute.startsWith("th:" + filter)
                         || attribute.startsWith("layout:" + filter)
-                        || attribute.startsWith("data-th" + filter)
-                        || attribute.startsWith("data-layout" + filter);
+                        || attribute.startsWith("data-th-" + filter)
+                        || attribute.startsWith("data-layout-" + filter);
             }
 
             private boolean filterMatchThymeleafMethod(String method, String filter) {
