@@ -101,8 +101,8 @@ public class ThymeleafData {
         "th:if",
         "th:include",
         "th:inline",
-        "th:ismap",
         "th:insert", //thymeleaf ver 3
+        "th:ismap",
         "th:keytype",
         "th:kind",
         "th:label",
@@ -329,8 +329,8 @@ public class ThymeleafData {
         "data-th-if",
         "data-th-include",
         "data-th-inline",
-        "data-th-ismap",
         "data-th-insert", //thymeleaf ver 3
+        "data-th-ismap",
         "data-th-keytype",
         "data-th-kind",
         "data-th-label",
@@ -863,72 +863,75 @@ public class ThymeleafData {
     private static final HashMap<String, String> DOCUMENTATION = new HashMap<String, String>();
 
     static {
-        DOCUMENTATION.put("th:alt", "Sets the alt attribute to the result of the expression. \n\nSee also:\n\tth:alt-title");
-        DOCUMENTATION.put("th:alt-title", "Sets both the alt and title attributes. \nAuthor:\n\tDaniel Fern&aacutendez\nSince:\n\t1.0");
-        DOCUMENTATION.put("th:assert", "A comma-separated list of expressions which should \n be evaluated and produce true for every evaluation, \n raising an exception if not. \nAuthor:\n\tDaniel Fern&aacutendez\nSince:\n\t2.1.0");
-        DOCUMENTATION.put("th:attr", "See also:\n\tth:attrappend, th:attrprepend\nReference:\n\tUsing Thymeleaf section 5 on Setting Attribute \n\t Values");
-        DOCUMENTATION.put("th:attrappend", "See also:\n\tth:attr, th:attrprepend, th:classappend\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
-        DOCUMENTATION.put("th:attrprepend", "See also:\n\tth:attr, th:attrappend\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
-        DOCUMENTATION.put("th:case", "See also:\n\tth:switch\nReference:\n\tUsing Thymeleaf section 7.2 on Switch \n\t Statements");
-        DOCUMENTATION.put("th:classappend", "See also:\n\tth:attrappend, th:class\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
-        DOCUMENTATION.put("th:each", "Reference:\n\tUsing Thymeleaf section 6.2 on Keeping Iteration \n\t Status");
-        DOCUMENTATION.put("th:fragment", "See also:\n\tth:include, th:substituteby\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
-        DOCUMENTATION.put("th:if", "See also:\n\tth:unless\nReference:\n\tUsing Thymeleaf section 7.1 on Simple \n\t Conditionals");
-        DOCUMENTATION.put("th:include", "See also:\n\tth:replace, th:substituteby, th:fragment\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
-        DOCUMENTATION.put("th:inline", "Reference:\n\tUsing Thymeleaf section 11 on Inlining\n\nPossible value(s):\n\ttext, javascript, dart");
-        DOCUMENTATION.put("th:lang", "Sets the lang attribute to the result of the \n expression. \n\nSee also:\n\tth:lang-xmllang");
-        DOCUMENTATION.put("th:lang-xmllang", "Sets both the lang and xml:lang attributes. \nAuthor:\n\tDaniel Fern&aacutendez\nSince:\n\t1.0");
-        DOCUMENTATION.put("th:object", "See also:\n\tth:with\nReference:\n\tUsing Thymeleaf section 4.3 on the asterisk \n\t syntax");
-        DOCUMENTATION.put("th:remove", "Reference:\n\tUsing Thymeleaf section 8.2 on Removing \n\t Template Fragments\n\nPossible value(s):\n\tall, body, tag, all-but-first");
-        DOCUMENTATION.put("th:replace", "See also:\n\tth:include, th:fragment\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
-        DOCUMENTATION.put("th:styleappend", "See also:\n\tth:attrappend, th:style\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
-        DOCUMENTATION.put("th:substituteby", "See also:\n\tth:include, th:fragment\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
-        DOCUMENTATION.put("th:switch", "See also:\n\tth:case, th:if\nReference:\n\tUsing Thymeleaf section section 7.2 on Switch \n\t Statements");
-        DOCUMENTATION.put("th:text", "See also:\n\tth:utext\nReference:\n\tUsing Thymeleaf section 3 on Using Texts");
-        DOCUMENTATION.put("th:title", "Sets the title attribute to the result of the \n expression. \n\nSee also:\n\tth:alt-title");
-        DOCUMENTATION.put("th:unless", "See also:\n\tth:if\nReference:\n\tUsing Thymeleaf section 7.1 on Simple \n\t Conditionals");
-        DOCUMENTATION.put("th:utext", "See also:\n\tth:text\nReference:\n\tUsing Thymeleaf section 3.2 on Unescaped Text");
-        DOCUMENTATION.put("th:with", "See also:\n\tth:object\nReference:\n\tUsing Thymeleaf section 9 on Local Variables");
-        DOCUMENTATION.put("th:xmlbase", "See also:\n\tth:xmllang, th:xmlspace");
-        DOCUMENTATION.put("th:xmllang", "See also:\n\tth:xmlbase, th:xmlspace");
-        DOCUMENTATION.put("th:xmlspace", "See also:\n\tth:xmlbase, th:xmllang");
-        DOCUMENTATION.put("layout:decorator", "Specifies the name of the decorator template to \n apply to a content template. \nThe mechanism for resolving decorator templates is \n the same as that used by Thymeleaf to resolve pages \n in the th:fragment and th:include processors. \nAuthor:\n\tEmanuel Rabina");
-        DOCUMENTATION.put("layout:fragment", "Marks sections of the template that can be replaced \n by sections in the content template (if decorating) or \n passed along to included pages (if including), which \n share the same name. \nAuthor:\n\tEmanuel Rabina\n\nCannot appear in tag(s):\n\ttitle");
-        DOCUMENTATION.put("layout:include", "Similar to Thymeleaf's th:include, but allows the \n passing of entire element fragments to the included \n template. Useful if you have some HTML that you \n want to reuse, but whose contents are too complex \n to determine or construct with context variables \n alone. \nAuthor:\n\tEmanuel Rabina");
-        DOCUMENTATION.put("layout:replace", "Similar to Thymeleaf's th:replace, but allows the \n passing of entire element fragments to the included \n template. Useful if you have some HTML that you \n want to reuse, but whose contents are too complex \n to determine or construct with context variables \n alone. \nAuthor:\n\tEmanuel Rabina");
-        DOCUMENTATION.put("data-th-alt", "Sets the alt attribute to the result of the expression. \n\nSee also:\n\tth:alt-title");
-        DOCUMENTATION.put("data-th-alt-title", "Sets both the alt and title attributes. \nAuthor:\n\tDaniel Fern&aacutendez\nSince:\n\t1.0");
-        DOCUMENTATION.put("data-th-assert", "A comma-separated list of expressions which should \n be evaluated and produce true for every evaluation, \n raising an exception if not. \nAuthor:\n\tDaniel Fern&aacutendez\nSince:\n\t2.1.0");
-        DOCUMENTATION.put("data-th-attr", "See also:\n\tth:attrappend, th:attrprepend\nReference:\n\tUsing Thymeleaf section 5 on Setting Attribute \n\t Values");
-        DOCUMENTATION.put("data-th-attrappend", "See also:\n\tth:attr, th:attrprepend, th:classappend\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
-        DOCUMENTATION.put("data-th-attrprepend", "See also:\n\tth:attr, th:attrappend\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
-        DOCUMENTATION.put("data-th-case", "See also:\n\tth:switch\nReference:\n\tUsing Thymeleaf section 7.2 on Switch \n\t Statements");
-        DOCUMENTATION.put("data-th-classappend", "See also:\n\tth:attrappend, th:class\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
-        DOCUMENTATION.put("data-th-each", "Reference:\n\tUsing Thymeleaf section 6.2 on Keeping Iteration \n\t Status");
-        DOCUMENTATION.put("data-th-fragment", "See also:\n\tth:include, th:substituteby\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
-        DOCUMENTATION.put("data-th-if", "See also:\n\tth:unless\nReference:\n\tUsing Thymeleaf section 7.1 on Simple \n\t Conditionals");
-        DOCUMENTATION.put("data-th-include", "See also:\n\tth:replace, th:substituteby, th:fragment\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
-        DOCUMENTATION.put("data-th-inline", "Reference:\n\tUsing Thymeleaf section 11 on Inlining\n\nPossible value(s):\n\ttext, javascript, dart");
-        DOCUMENTATION.put("data-th-lang", "Sets the lang attribute to the result of the \n expression. \n\nSee also:\n\tth:lang-xmllang");
-        DOCUMENTATION.put("data-th-lang-xmllang", "Sets both the lang and xml:lang attributes. \nAuthor:\n\tDaniel Fern&aacutendez\nSince:\n\t1.0");
-        DOCUMENTATION.put("data-th-object", "See also:\n\tth:with\nReference:\n\tUsing Thymeleaf section 4.3 on the asterisk \n\t syntax");
-        DOCUMENTATION.put("data-th-remove", "Reference:\n\tUsing Thymeleaf section 8.2 on Removing \n\t Template Fragments\n\nPossible value(s):\n\tall, body, tag, all-but-first");
-        DOCUMENTATION.put("data-th-replace", "See also:\n\tth:include, th:fragment\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
-        DOCUMENTATION.put("data-th-styleappend", "See also:\n\tth:attrappend, th:style\nReference:\n\tUsing Thymeleaf section 5.4 on Appending And \n\t Prepending");
-        DOCUMENTATION.put("data-th-substituteby", "See also:\n\tth:include, th:fragment\nReference:\n\tUsing Thymeleaf section 8.1 on Including \n\t Template Fragments");
-        DOCUMENTATION.put("data-th-switch", "See also:\n\tth:case, th:if\nReference:\n\tUsing Thymeleaf section section 7.2 on Switch \n\t Statements");
-        DOCUMENTATION.put("data-th-text", "See also:\n\tth:utext\nReference:\n\tUsing Thymeleaf section 3 on Using Texts");
-        DOCUMENTATION.put("data-th-title", "Sets the title attribute to the result of the \n expression. \n\nSee also:\n\tth:alt-title");
-        DOCUMENTATION.put("data-th-unless", "See also:\n\tth:if\nReference:\n\tUsing Thymeleaf section 7.1 on Simple \n\t Conditionals");
-        DOCUMENTATION.put("data-th-utext", "See also:\n\tth:text\nReference:\n\tUsing Thymeleaf section 3.2 on Unescaped Text");
-        DOCUMENTATION.put("data-th-with", "See also:\n\tth:object\nReference:\n\tUsing Thymeleaf section 9 on Local Variables");
-        DOCUMENTATION.put("data-th-xmlbase", "See also:\n\tth:xmllang, th:xmlspace");
-        DOCUMENTATION.put("data-th-xmllang", "See also:\n\tth:xmlbase, th:xmlspace");
-        DOCUMENTATION.put("data-th-xmlspace", "See also:\n\tth:xmlbase, th:xmllang");
-        DOCUMENTATION.put("data-layout-decorator", "Specifies the name of the decorator template to \n apply to a content template. \nThe mechanism for resolving decorator templates is \n the same as that used by Thymeleaf to resolve pages \n in the th:fragment and th:include processors. \nAuthor:\n\tEmanuel Rabina");
-        DOCUMENTATION.put("data-layout-fragment", "Marks sections of the template that can be replaced \n by sections in the content template (if decorating) or \n passed along to included pages (if including), which \n share the same name. \nAuthor:\n\tEmanuel Rabina\n\nCannot appear in tag(s):\n\ttitle");
-        DOCUMENTATION.put("data-layout-include", "Similar to Thymeleaf's th:include, but allows the \n passing of entire element fragments to the included \n template. Useful if you have some HTML that you \n want to reuse, but whose contents are too complex \n to determine or construct with context variables \n alone. \nAuthor:\n\tEmanuel Rabina");
-        DOCUMENTATION.put("data-layout-replace", "Similar to Thymeleaf's th:replace, but allows the \n passing of entire element fragments to the included \n template. Useful if you have some HTML that you \n want to reuse, but whose contents are too complex \n to determine or construct with context variables \n alone. \nAuthor:\n\tEmanuel Rabina");
+        DOCUMENTATION.put("th:alt", "Sets the <b>alt</b> attribute to the result of the expression.<br><br><i>See also:</i> <code>th:alt-title</code>");
+        DOCUMENTATION.put("th:alt-title", "Sets both the <b>alt</b> and <b>title</b> attributes.");
+        DOCUMENTATION.put("th:assert", "A comma-separated list of expressions which should be evaluated and produce true for every evaluation, raising an exception if not.");
+        DOCUMENTATION.put("th:attr", "Redefine any attribute of the tag.<br><br><i>See also:</i> <code>th:attrappend</code>, <code>th:attrprepend</code>");
+        DOCUMENTATION.put("th:attrappend", "Append the evaluated expression to an existing attribute.<br><br><i>See also:</i> <code>th:attr</code>, <code>th:attrprepend</code>, <code>th:classappend</code>");
+        DOCUMENTATION.put("th:attrprepend", "Prepend the evaluated expression to an existing attribute.<br><br><i>See also:</i> <code>th:attr</code>, <code>th:attrappend</code>");
+        DOCUMENTATION.put("th:case", "Marks a conditional tag in a <code>th:switch</code> construct.<br><br><i>See also:</i> <code>th:switch</code>");
+        DOCUMENTATION.put("th:classappend", "Append the evaluated expression to the <b>class</b> attribute.<br><br><i>See also:</i> <code>th:attrappend</code>, <code>th:class</code>");
+        DOCUMENTATION.put("th:each", "Iterate an <i>iter variable</i> over an <i>iterated expression</i>");
+        DOCUMENTATION.put("th:fragment", "Mark a tag and its content as a fragment.<br><br><i>See also:</i> <code>th:include</code>, <code>th:substituteby</code>");
+        DOCUMENTATION.put("th:if", "Show tag when expression evaluates to true.<br><br><i>See also:</i> <code>th:unless</code>");
+        DOCUMENTATION.put("th:include", "Substitute the content of the tag with the referenced fragment.<br><br><i>See also:</i> <code>th:replace</code>, <code>th:substituteby</code>, <code>th:fragment</code>");
+        DOCUMENTATION.put("th:inline", "Define inlining mode.<br><br>Possible value(s): <code>text</code>, <code>javascript</code>, <code>dart</code>");
+        DOCUMENTATION.put("th:insert", "Inserts a fragment.<br><br><i>See also:</i> <code>th:replace</code>, <code>th:fragment</code><br><br><i>Since:</i> Thymeleaf 3.0");
+        DOCUMENTATION.put("th:lang", "Sets the <b>lang</b> attribute to the result of the expression.<br><br><i>See also:</i> <code>th:lang-xmllang</code>");
+        DOCUMENTATION.put("th:lang-xmllang", "Sets both the <b>lang</b> and <b>xml:lang</b> attributes.");
+        DOCUMENTATION.put("th:object", "Define a selected object for asterisk syntax expressions.<br><br><i>See also:</i> <code>th:with</code>");
+        DOCUMENTATION.put("th:remove", "Removes tag and/or content.<br><br>Possible value(s): <code>all</code>, <code>body</code>, <code>tag</code>, <code>all-but-first</code>");
+        DOCUMENTATION.put("th:replace", "Replace tag with a fragment.<br><br><i>See also:</i> <code>th:include</code>, <code>th:fragment</code>");
+        DOCUMENTATION.put("th:styleappend", "Append the evaluated expression to the <b>style</b> attribute.<br><br><i>See also:</i> <code>th:attrappend</code>, <code>th:style</code>");
+        DOCUMENTATION.put("th:substituteby", "Deprecated, use <code>th:replace</code> instead.");
+        DOCUMENTATION.put("th:switch", "Multiple conditional switch.<br><br><i>See also:</i> <code>th:case</code>, <code>th:if</code>");
+        DOCUMENTATION.put("th:text", "Replaces tag content with HTML escaped value of expression.<br><br><i>See also:</i> <code>th:utext</code>");
+        DOCUMENTATION.put("th:title", "Sets the <b>title</b> attribute to the result of the expression.<br><br><i>See also:</i> <code>th:alt-title</code>");
+        DOCUMENTATION.put("th:unless", "Hide tag when expression evaluates to true.<br><br><i>See also:</i> <code>th:if</code>");
+        DOCUMENTATION.put("th:utext", "Replaces tag content with HTML unescaped value of expression.<br><br><i>See also:</i> <code>th:text</code>");
+        DOCUMENTATION.put("th:with", "Creates local variables.<br><br><i>See also:</i> <code>th:object</code>");
+        DOCUMENTATION.put("th:xmlbase", "Sets the <b>xml:base</b> attribute to the result of the expression.<br><br><i>See also:</i> <code>th:xmllang</code>, <code>th:xmlspace</code>");
+        DOCUMENTATION.put("th:xmllang", "Sets the <b>xml:lang</b> attribute to the result of the expression.<br><br><i>See also:</i> <code>th:xmlbase</code>, <code>th:xmlspace</code>");
+        DOCUMENTATION.put("th:xmlspace", "Sets the <b>xml:space</b> attribute to the result of the expression.<br><br><i>See also:</i> <code>th:xmlbase</code>, <code>th:xmllang</code>");
+        DOCUMENTATION.put("layout:decorator", "Specifies the name of the decorator template to apply to a content template.<br>The mechanism for resolving decorator templates is the same as that used by Thymeleaf to resolve pages in the <code>th:fragment</code> and <code>th:include</code> processors.");
+        DOCUMENTATION.put("layout:fragment", "Marks sections of the template that can be replaced by sections in the content template (if decorating) or passed along to included pages (if including), which share the same name.<br><br>Cannot appear in tag(s): <code>title</code>");
+        DOCUMENTATION.put("layout:include", "Similar to Thymeleaf's <code>th:include</code>, but allows the passing of entire element fragments to the included template. Useful if you have some HTML that you want to reuse, but whose contents are too complex to determine or construct with context variables alone.");
+        DOCUMENTATION.put("layout:replace", "Similar to Thymeleaf's <code>th:replace</code>, but allows the passing of entire element fragments to the included template. Useful if you have some HTML that you want to reuse, but whose contents are too complex to determine or construct with context variables alone.");
+
+        DOCUMENTATION.put("data-th-alt", DOCUMENTATION.get("th:alt"));
+        DOCUMENTATION.put("data-th-alt-title", DOCUMENTATION.get("th:alt-title"));
+        DOCUMENTATION.put("data-th-assert", DOCUMENTATION.get("th:assert"));
+        DOCUMENTATION.put("data-th-attr", DOCUMENTATION.get("th:attr"));
+        DOCUMENTATION.put("data-th-attrappend", DOCUMENTATION.get("th:attrappend"));
+        DOCUMENTATION.put("data-th-attrprepend", DOCUMENTATION.get("th:attrprepend"));
+        DOCUMENTATION.put("data-th-case", DOCUMENTATION.get("th:case"));
+        DOCUMENTATION.put("data-th-classappend", DOCUMENTATION.get("th:classappend"));
+        DOCUMENTATION.put("data-th-each", DOCUMENTATION.get("th:each"));
+        DOCUMENTATION.put("data-th-fragment", DOCUMENTATION.get("th:fragment"));
+        DOCUMENTATION.put("data-th-if", DOCUMENTATION.get("th:if"));
+        DOCUMENTATION.put("data-th-include", DOCUMENTATION.get("th:include"));
+        DOCUMENTATION.put("data-th-inline", DOCUMENTATION.get("th:inline"));
+        DOCUMENTATION.put("data-th-insert", DOCUMENTATION.get("th:insert"));
+        DOCUMENTATION.put("data-th-lang", DOCUMENTATION.get("th:lang"));
+        DOCUMENTATION.put("data-th-lang-xmllang", DOCUMENTATION.get("th:lang-xmllang"));
+        DOCUMENTATION.put("data-th-object", DOCUMENTATION.get("th:object"));
+        DOCUMENTATION.put("data-th-remove", DOCUMENTATION.get("th:remove"));
+        DOCUMENTATION.put("data-th-replace", DOCUMENTATION.get("th:replace"));
+        DOCUMENTATION.put("data-th-styleappend", DOCUMENTATION.get("th:styleappend"));
+        DOCUMENTATION.put("data-th-substituteby", DOCUMENTATION.get("th:substituteby"));
+        DOCUMENTATION.put("data-th-switch", DOCUMENTATION.get("th:switch"));
+        DOCUMENTATION.put("data-th-text", DOCUMENTATION.get("th:text"));
+        DOCUMENTATION.put("data-th-title", DOCUMENTATION.get("th:title"));
+        DOCUMENTATION.put("data-th-unless", DOCUMENTATION.get("th:unless"));
+        DOCUMENTATION.put("data-th-utext", DOCUMENTATION.get("th:utext"));
+        DOCUMENTATION.put("data-th-with", DOCUMENTATION.get("th:with"));
+        DOCUMENTATION.put("data-th-xmlbase", DOCUMENTATION.get("th:xmlbase"));
+        DOCUMENTATION.put("data-th-xmllang", DOCUMENTATION.get("th:xmllang"));
+        DOCUMENTATION.put("data-th-xmlspace", DOCUMENTATION.get("th:xmlspace"));
+        DOCUMENTATION.put("data-layout-decorator", DOCUMENTATION.get("layout:decorator"));
+        DOCUMENTATION.put("data-layout-fragment", DOCUMENTATION.get("layout:fragment"));
+        DOCUMENTATION.put("data-layout-include", DOCUMENTATION.get("layout:include"));
+        DOCUMENTATION.put("data-layout-replace", DOCUMENTATION.get("layout:replace"));
     }
 
     ;
