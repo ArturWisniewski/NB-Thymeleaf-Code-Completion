@@ -1,0 +1,39 @@
+<#assign licenseFirst = "<!--">
+<#assign licensePrefix = "">
+<#assign licenseLast = "-->">
+<#switch dialect>
+  <#case 0>
+<!DOCTYPE html>
+<#include "${project.licensePath}">
+<html>
+  <#break>
+  <#case 1>
+<!DOCTYPE html>
+<#include "${project.licensePath}">
+<html xmlns:th="http://www.thymeleaf.org">
+  <#break>
+  <#case 2>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<#include "${project.licensePath}">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <#break>
+</#switch>
+
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+
+    <body>
+<#switch dialect>
+  <#case 0>
+        <p data-th-text="${"#"}{welcome}">Welcome!</p>
+  <#break>
+  <#case 1>
+  <#case 2>
+        <p th:text="${"#"}{welcome}">Welcome!</p>
+  <#break>
+</#switch>
+    </body>
+
+</html>
