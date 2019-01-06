@@ -4,15 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JToolTip;
+import javax.swing.UIManager;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Caret;
 import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.StyledDocument;
-
 import org.netbeans.api.editor.completion.Completion;
 import org.netbeans.spi.editor.completion.CompletionItem;
 import org.netbeans.spi.editor.completion.CompletionResultSet;
@@ -32,7 +31,8 @@ import org.openide.util.ImageUtilities;
  */
 public class ThymeleafCompletionItem implements CompletionItem {
 
-    private static final Color FIELD_COLOR = Color.decode("0x0000B2");
+    private static final Color FIELD_COLOR = UIManager.getColor("List.foreground");
+    private static final Color FIELD_COLOR_SELECTED = UIManager.getColor("List.selectionForeground");
     private static final ImageIcon FIELD_ICON = new ImageIcon(ImageUtilities.loadImage("org/netbeans/modules/thymeleafcodecompletion/Thymeleaf.png"));
     private static final String INFO = "Thymeleaf";
 
@@ -127,7 +127,7 @@ public class ThymeleafCompletionItem implements CompletionItem {
      */
     @Override
     public void render(Graphics graphics, Font defaultFont, Color defaultColor, Color backgroundColor, int width, int height, boolean selected) {
-        CompletionUtilities.renderHtml(FIELD_ICON, text, INFO, graphics, defaultFont, (selected ? Color.white : FIELD_COLOR), width, height, selected);
+        CompletionUtilities.renderHtml(FIELD_ICON, text, INFO, graphics, defaultFont, (selected ? FIELD_COLOR_SELECTED : FIELD_COLOR), width, height, selected);
     }
 
     /**
