@@ -205,7 +205,7 @@ public class ThymeleafCompletionItem implements CompletionItem {
      */
     @Override
     public int getSortPriority() {
-        return 0;
+        return 100;
     }
 
     /**
