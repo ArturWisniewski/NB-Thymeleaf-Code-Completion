@@ -10,7 +10,7 @@
   <#case 1>
 <!DOCTYPE html>
 <#include "${project.licensePath}">
-<html xmlns:th="http://www.thymeleaf.org">
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <#break>
   <#case 2>
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
